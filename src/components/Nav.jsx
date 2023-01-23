@@ -7,12 +7,12 @@ export default function Nav() {
 
       <div className="w-20 ml-5 text-left nav">
         <h1 className="font-medium hover:italic">
-          <Link to="/about">About Me</Link>
+          <Link to="/about">About↗</Link>
         </h1>
         <h1 className="font-medium hover:italic">
-          <Link to="/writing">Writing</Link>
+          <Link to="/writing">Writing↗</Link>
         </h1>
-        <h1 className="font-medium hover:italic"> Projects </h1>
+        <h1 className="font-medium hover:italic"> Projects↗</h1>
       </div>
     </div>
   );
