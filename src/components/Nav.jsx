@@ -35,14 +35,16 @@ export default function Nav() {
           <span className="line-through">Tools</span> Toys I{" "}
           <span className="line-through">use</span> play with
         </span>
-        <ul>
-          <li>
+        <ul className="">
+          <li className="hover:italic">
             <a href="https://arc.net/">arc</a>
           </li>
-          <li>
+          <li className="hover:italic">
             <a href="https://cron.com/">cron</a>
           </li>
-          <li href="https://farcaster.xyz/">farcaster</li>
+          <li className="hover:italic">
+            <a href="https://farcaster.xyz/">farcaster</a>
+          </li>
         </ul>
       </div>
       <div className="bottom-0">
