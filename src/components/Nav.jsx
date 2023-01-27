@@ -37,13 +37,31 @@ export default function Nav() {
         </span>
         <ul className="">
           <li className="hover:italic">
-            <a href="https://arc.net/">arc</a>
+            <a
+              href="https://arc.net/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              arc
+            </a>
           </li>
           <li className="hover:italic">
-            <a href="https://cron.com/">cron</a>
+            <a
+              href="https://cron.com/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              cron
+            </a>
           </li>
           <li className="hover:italic">
-            <a href="https://farcaster.xyz/">farcaster</a>
+            <a
+              href="https://farcaster.xyz/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              farcaster
+            </a>
           </li>
         </ul>
       </div>
