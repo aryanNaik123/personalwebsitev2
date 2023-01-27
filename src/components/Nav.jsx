@@ -36,9 +36,13 @@ export default function Nav() {
           <span className="line-through">use</span> play with
         </span>
         <ul>
-          <li>arc</li>
-          <li>cron</li>
-          <li>farcaster</li>
+          <li>
+            <a href="https://arc.net/">arc</a>
+          </li>
+          <li>
+            <a href="https://cron.com/">cron</a>
+          </li>
+          <li href="https://farcaster.xyz/">farcaster</li>
         </ul>
       </div>
       <div className="bottom-0">
