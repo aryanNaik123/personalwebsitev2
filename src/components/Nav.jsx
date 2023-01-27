@@ -35,7 +35,7 @@ export default function Nav() {
           <span className="line-through">Tools</span> Toys I{" "}
           <span className="line-through">use</span> play with
         </span>
-        <ul className="">
+        <ul className="w-20">
           <li className="hover:italic">
             <a
               href="https://arc.net/"
