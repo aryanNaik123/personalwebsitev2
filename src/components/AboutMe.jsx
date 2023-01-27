@@ -3,20 +3,20 @@ import { Link } from "react-router-dom";
 export default function AboutMe() {
   return (
     <div>
-      <Link to="/" className="justify-self-start">
+      <Link to="/" className="">
         ⏮️
       </Link>
       <ul className="text-xl text-left ml-5">
+        <li>Currently Intern @ Pace Capital</li>
         <li>Prev.</li>
         <li>
-          Summer Associate @{" "}
+          Summer Associate @
           <a className="underline" href="https://www.fouracres.vc/">
-            {" "}
             Four Acres Capital
           </a>
         </li>
         <li>
-          Blockchain Research @{" "}
+          Blockchain Research @
           <a className="underline" href="https://www.joinmassive.com/">
             Massive
           </a>
