@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 export default function AboutMe() {
   return (
     <div>
-      <Link to="/" className="float-left">
+      <Link to="/" className="ml-5 float-left">
         ⏮️
       </Link>
-      <ul className="text-xl ml-5 text-left">
+
+      <ul className="text-xl ml-5 mt-5 text-center">
         <li>Currently Intern @ Pace Capital</li>
-        <li>Prev.</li>
+        <li>In a previous life...</li>
         <li>
           Summer Associate @
           <a className="underline" href="https://www.fouracres.vc/">
