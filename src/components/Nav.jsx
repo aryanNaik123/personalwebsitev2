@@ -4,7 +4,9 @@ import Clock from "./Clock";
 export default function Nav() {
   return (
     <div>
-      <header className="mt-2 text-2xl"> Aryan Naik </header>
+      <header className="mt-2 text-2xl">
+        <marquee direction="right">Aryan Naik</marquee>
+      </header>
       <div className="w-20 ml-5 text-left nav">
         <h1 className="font-medium hover:italic">
           <Link to="/about">About↗</Link>
@@ -28,6 +30,8 @@ export default function Nav() {
               curius
             </a>
           </span>
+          <br></br>
+          <span className="">Contact me at aryannnaik01[at]gmail[dot]com</span>
         </span>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
