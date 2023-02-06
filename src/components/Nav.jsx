@@ -4,9 +4,7 @@ import Clock from "./Clock";
 export default function Nav() {
   return (
     <div>
-      <header className="mt-2 text-2xl">
-        <marquee direction="right">Aryan Naik</marquee>
-      </header>
+      <header className="mt-2 text-2xl">Aryan Naik</header>
       <div className="w-20 ml-5 text-left nav">
         <h1 className="font-medium hover:italic">
           <Link to="/about">About↗</Link>
