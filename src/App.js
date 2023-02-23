@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import AboutMe from "./components/AboutMe";
 import Writing from "./components/Writing";
 import Projects from "./components/Projects";
+import Library from "./components/Library";
 function App() {
   useEffect(() => {
     document.title = "Aryan Naik";
@@ -17,6 +18,7 @@ function App() {
           <Route path="/about" element={<AboutMe />} />
           <Route path="/writing" element={<Writing />} />
           <Route path="/projects" element={<Projects />}></Route>
+          <Route path="/library" element={<Library />} />
         </Routes>
       </BrowserRouter>
     </div>

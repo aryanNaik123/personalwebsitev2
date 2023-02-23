@@ -4,16 +4,18 @@
   - [x] header
   - [x] make component
   - [ ] adding substack link
-- [ ] about me
+- [x] about me
   - [x] header
   - [x] component
-  - [ ] copywriting
 - [ ] projects
   - [x] link
   - [ ] component
 - [ ] cool animation
   - [ ] find inspiration
   - [ ] find library
+- [ ] Library
+  - [ ] books I am reading rn
+  - [ ] quotes
 
 # Built with
 

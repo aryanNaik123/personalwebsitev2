@@ -15,6 +15,9 @@ export default function Nav() {
         <h1 className="font-medium hover:italic">
           <Link to="/projects">Projects↗</Link>
         </h1>
+        <h1 className="font-medium hover:italic">
+          <Link to="/library">Library↗</Link>
+        </h1>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
         <span>
@@ -29,7 +32,7 @@ export default function Nav() {
             </a>
           </span>
           <br></br>
-          <span className="">Contact me at aryannnaik01[at]gmail[dot]com</span>
+          <span className="">Say hi: aryannnaik01[at]gmail[dot]com</span>
         </span>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
