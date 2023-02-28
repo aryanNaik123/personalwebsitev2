@@ -8,22 +8,52 @@ export default function AboutMe() {
       </Link>
 
       <ul className="text-xl ml-5 mt-5 text-center">
-        <li>Currently Intern @ Pace Capital</li>
+        <li>
+          Currently Intern @{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.pacecapital.com/"
+          >
+            Pace Capital
+          </a>
+        </li>
         <li>In a previous life...</li>
         <li>
-          Summer Associate @
-          <a className="underline" href="https://www.fouracres.vc/">
+          Summer Associate @{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.fouracres.vc/"
+          >
             Four Acres Capital
           </a>
         </li>
         <li>
-          Blockchain Research @
-          <a className="underline" href="https://www.joinmassive.com/">
+          Blockchain Research @{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.joinmassive.com/"
+          >
             Massive
           </a>
         </li>
         <li>Cofounder of VC-backed Crypto startup</li>
-        <li>Research Affiliate @ Harvard</li>
+        <li>
+          Research Affiliate @{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://gis.harvard.edu/people/aryan-naik"
+          >
+            Harvard
+          </a>
+        </li>
         <li>Research Assistant @ Columbia</li>
       </ul>
     </div>

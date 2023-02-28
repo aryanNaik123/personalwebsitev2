@@ -31,7 +31,7 @@ export default function Library() {
         author="Lao Tzu"
       />
       <Quote
-        text="“If I only had an hour to chop down a tree, I would spend the first 45 minutes sharpening my axe.”"
+        text="“If I only had an hour to chop down a tree, I would spend the first 45 minutes sharpening my axe.”" 
         author="Abraham Lincoln"
       />
       <Quote text="“Only the paranoid survive.“" author="Andy Grove" />
