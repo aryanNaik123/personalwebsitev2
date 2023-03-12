@@ -31,12 +31,16 @@ export default function Library() {
         author="Lao Tzu"
       />
       <Quote
-        text="“If I only had an hour to chop down a tree, I would spend the first 45 minutes sharpening my axe.”" 
+        text="“If I only had an hour to chop down a tree, I would spend the first 45 minutes sharpening my axe.”"
         author="Abraham Lincoln"
       />
       <Quote text="“Only the paranoid survive.“" author="Andy Grove" />
       <Quote
         text="“When you grow up you tend to get told that the world is the way it is and your life is just to live your life inside the world-try not to bash into the walls too much, try to have a nice family life, have fun, save a little money. But life-that's a very limited life. Life can be much broader once you discover one simple fact. And that is everything around you that you call life was made up by people that were no smarter than you. And you can change it-you can influence it, you can build your own things that other people can use.“"
+        author="Steve Jobs"
+      />
+      <Quote
+        text="“Most people never pick up the phone. Most people never call and ask. And that’s what separates sometimes the people who do things from those who just dream about them. You gotta act. You gotta be willing to fail. You gotta be willing to crash a burn. With people on the phone or starting a company, if you’re afraid you’ll fail, you won’t get very far.”"
         author="Steve Jobs"
       />
     </div>
