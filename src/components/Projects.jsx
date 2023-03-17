@@ -22,6 +22,10 @@ export default function Projects() {
           projectName="Flash Card App"
           githubLink="https://github.com/aryanNaik123/flashcardapp"
         />
+        <Project
+          projectName="Story Generator"
+          githubLink="https://github.com/aryanNaik123/fanfic-generator"
+        />
       </div>
     </div>
   );
