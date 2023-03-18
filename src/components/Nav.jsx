@@ -32,6 +32,8 @@ export default function Nav() {
             </a>
           </span>
           <br></br>
+          <span>Status: down another 🕳️🐇</span>
+          <br></br>
           <span className="">Say hi: aryannnaik01[at]gmail[dot]com</span>
         </span>
       </div>
