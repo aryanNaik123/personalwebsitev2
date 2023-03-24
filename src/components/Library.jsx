@@ -7,7 +7,16 @@ export default function Library() {
       <Link to="/" className="ml-5 mt-3 float-left">
         ⏮️
       </Link>
+      <br></br>
+      <br></br>
       <h2 className="text-xl text-center">Books</h2>
+      <ul>
+        <li>The Power Law: Venture Capital and the Making of the New Future</li>
+        <li>The Almanack of Naval Ravikant: A Guide to Wealth and Happiness</li>
+        <li>The Silo Series by Hugh Howey</li>
+      </ul>
+      <br></br>
+      <hr className="bg-gray-500 w-6/12 m-auto"></hr>
       <h2 className="text-xl text-center">quotes that inspire me</h2>
       <br></br>
       <Quote
