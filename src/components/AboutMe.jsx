@@ -9,6 +9,11 @@ export default function AboutMe() {
 
       <ul className="text-xl ml-5 mt-5 text-center">
         <li>
+          Lover of Birkenstocks, Coding, Cognitive Science, Philosophy, and
+          Startups
+        </li>
+        <br></br>
+        <li>
           Currently Intern @{" "}
           <a
             className="underline"
