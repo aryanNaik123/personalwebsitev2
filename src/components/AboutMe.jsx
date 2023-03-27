@@ -12,6 +12,7 @@ export default function AboutMe() {
           Lover of Birkenstocks, Coding, Cognitive Science, Philosophy, and
           Startups
         </li>
+        <li>and infovore, philomath, etc</li>
         <br></br>
         <li>
           Currently Intern @{" "}
