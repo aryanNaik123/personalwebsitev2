@@ -26,6 +26,10 @@ export default function Projects() {
           projectName="Story Generator"
           githubLink="https://github.com/aryanNaik123/fanfic-generator"
         />
+        <Project
+          projectName="Weather App"
+          githubLink="https://github.com/aryanNaik123/weather-app"
+        />
       </div>
     </div>
   );
