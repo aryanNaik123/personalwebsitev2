@@ -1,21 +1,21 @@
 # Todo
 
-- [ ] writings
+- [x] writings
   - [x] header
   - [x] make component
-  - [ ] adding substack link
+  - [x] created blog
 - [x] about me
   - [x] header
   - [x] component
-- [ ] projects
+- [x] projects
   - [x] link
-  - [ ] component
+  - [x] component
 - [ ] cool animation
   - [ ] find inspiration
   - [ ] find library
-- [ ] Library
+- [x] Library
   - [ ] books I am reading rn
-  - [ ] quotes
+  - [x] quotes
 
 # Built with
 
