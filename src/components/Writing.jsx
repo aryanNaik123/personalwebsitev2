@@ -17,12 +17,15 @@ export default function Writing() {
               path="/*"
               element={
                 <>
-                  <h1>Blog Posts</h1>
+                  <h1 className="text-xl">Blog Posts</h1>
                   <ul>
                     {blog.blogs.map((blog) => (
                       <li key={blog.id}>
-                        <Link to={`/${blog.title.replace(/\s+/g, "-")}`}>
-                          {blog.title}
+                        <Link
+                          className="text-lg hover:text-blue-400 italic"
+                          to={`/${blog.title.replace(/\s+/g, "-")}`}
+                        >
+                          {"> " + blog.title}
                         </Link>
                       </li>
                     ))}
