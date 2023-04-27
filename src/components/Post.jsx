@@ -1,8 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { marked } from "marked";
+import { useEffect } from "react";
+
 export default function Post(props) {
   const html = marked(props.content);
+  useEffect(() => {
+    document.title = `${props.title}`;
+  }, [props.title]);
+
   return (
     <>
       <div>
