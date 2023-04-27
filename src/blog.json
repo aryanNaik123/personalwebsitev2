@@ -1,0 +1,14 @@
+{
+  "blogs": [
+    {
+      "title": "NPCs X AI",
+      "id": 1,
+      "content": "hello there"
+    },
+    {
+      "title": "Second Blog Post",
+      "id": 2,
+      "content": ""
+    }
+  ]
+}
