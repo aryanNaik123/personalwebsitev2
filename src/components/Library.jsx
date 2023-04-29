@@ -52,6 +52,10 @@ export default function Library() {
         text="“Most people never pick up the phone. Most people never call and ask. And that’s what separates sometimes the people who do things from those who just dream about them. You gotta act. You gotta be willing to fail. You gotta be willing to crash a burn. With people on the phone or starting a company, if you’re afraid you’ll fail, you won’t get very far.”"
         author="Steve Jobs"
       />
+      <Quote
+        text="“Get action. Do things; be sane; don't fritter away your time; create, act, take a place wherever you are and be somebody; get action.”"
+        author="Theodore Roosevelt"
+      />
     </div>
   );
 }
