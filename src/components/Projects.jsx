@@ -30,6 +30,14 @@ export default function Projects() {
           projectName="Weather App"
           githubLink="https://github.com/aryanNaik123/weather-app"
         />
+        <Project
+          projectName="Chip8 Emulator"
+          githubLink="https://github.com/aryanNaik123/chip8"
+        />
+        <Project
+          projectName="TodoistCLI"
+          githubLink="https://github.com/aryanNaik123/todoist-cli"
+        />
       </div>
     </div>
   );
