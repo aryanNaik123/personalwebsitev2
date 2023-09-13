@@ -12,8 +12,19 @@ export default function AboutMe() {
           Lover of Birkenstocks, Coding, Cognitive Science, Philosophy, and
           Startups
         </li>
-        <li>and infovore, philomath, etc</li>
+        <li>infovore, philomath, etc</li>
         <br></br>
+        <li>
+          Currently SWE Intern @{" "}
+          <a
+            className="underline"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.careyaya.org/"
+          >
+            CareYaya
+          </a>
+        </li>
         <li>
           Currently Intern @{" "}
           <a
