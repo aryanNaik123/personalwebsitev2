@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { marked } from "marked";
-import { useEffect } from "react";
 
 export default function Post(props) {
   const html = marked(props.content);
   useEffect(() => {
     document.title = `${props.title}`;
   }, [props.title]);
+
+  const contentStyle = {
+    whiteSpace: "pre-line", // Preserve newline characters
+  };
 
   return (
     <>
@@ -17,7 +20,10 @@ export default function Post(props) {
         </Link>
         <div className="pt-10 pl-3 text-left">
           <h1 className="text-center">{props.title}</h1>
-          <div dangerouslySetInnerHTML={{ __html: html }}></div>
+          <div
+            dangerouslySetInnerHTML={{ __html: html }}
+            style={contentStyle}
+          ></div>
         </div>
       </div>
     </>
