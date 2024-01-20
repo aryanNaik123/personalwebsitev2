@@ -25,8 +25,10 @@ export default function AboutMe() {
             CareYaya
           </a>
         </li>
+
+        <li>In a previous life...</li>
         <li>
-          Currently Intern @{" "}
+          Intern Associate @{" "}
           <a
             className="underline"
             target="_blank"
@@ -36,7 +38,6 @@ export default function AboutMe() {
             Pace Capital
           </a>
         </li>
-        <li>In a previous life...</li>
         <li>
           Summer Associate @{" "}
           <a
