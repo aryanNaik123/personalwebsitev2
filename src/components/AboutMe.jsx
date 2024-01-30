@@ -14,17 +14,7 @@ export default function AboutMe() {
         </li>
         <li>infovore, philomath, etc</li>
         <br></br>
-        <li>
-          Currently SWE Intern @{" "}
-          <a
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.careyaya.org/"
-          >
-            CareYaya
-          </a>
-        </li>
+        <li>Incoming Security Engineering Intern @ Charles Schwab</li>
 
         <li>In a previous life...</li>
         <li>
