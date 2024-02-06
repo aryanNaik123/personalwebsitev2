@@ -9,7 +9,7 @@ export default function Projects() {
       </Link>
 
       <h1>My Projects</h1>
-      <div className="grid grid-rows-1 grid-flow-col w-96 m-auto gap-4 max-h-screen justify-center">
+      <div className="grid grid-rows-2 grid-flow-col w-96 m-auto gap-4 max-h-screen justify-center">
         <Project
           projectName="Todo List App"
           githubLink="https://github.com/aryanNaik123/TodoListApp"
