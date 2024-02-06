@@ -38,6 +38,10 @@ export default function Projects() {
           projectName="TodoistCLI"
           githubLink="https://github.com/aryanNaik123/todoist-cli"
         />
+        <Project
+          projectName="Lost and Found App"
+          githubLink="https://github.com/aryanNaik123/seekr-deploy"
+        />
       </div>
     </div>
   );
