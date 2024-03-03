@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Clock from "./Clock";
+
 export default function Nav() {
   return (
     <div>
@@ -61,19 +62,10 @@ export default function Nav() {
               cron
             </a>
           </li>
-          <li className="hover:italic">
-            <a
-              href="https://farcaster.xyz/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              farcaster
-            </a>
-          </li>
         </ul>
       </div>
       <div className="bottom-0">
-        <p>Aryan © 2023</p>
+        <p>Aryan © 2024</p>
         <Clock />
       </div>
     </div>
