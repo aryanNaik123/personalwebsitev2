@@ -42,6 +42,10 @@ export default function Projects() {
           projectName="Lost and Found App"
           githubLink="https://github.com/aryanNaik123/seekr-deploy"
         />
+        <Project
+          projectName="Librarian"
+          githubLink="https://github.com/aryanNaik123/librarian"
+        />
       </div>
     </div>
   );
