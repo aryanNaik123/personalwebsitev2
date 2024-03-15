@@ -46,6 +46,10 @@ export default function Projects() {
           projectName="Librarian"
           githubLink="https://github.com/aryanNaik123/librarian"
         />
+        <Project
+          projectName="Learning Arduino"
+          githubLink="https://github.com/aryanNaik123/librarian"
+        />
       </div>
     </div>
   );
