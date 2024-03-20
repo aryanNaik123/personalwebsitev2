@@ -50,6 +50,10 @@ export default function Projects() {
           projectName="Learning Arduino"
           githubLink="https://github.com/aryanNaik123/librarian"
         />
+        <Project
+          projectName="Homepage"
+          githubLink="https://github.com/aryanNaik123/homepage"
+        />
       </div>
     </div>
   );
