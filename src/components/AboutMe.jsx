@@ -18,20 +18,10 @@ export default function AboutMe() {
         <div className="flex justify-center items-center">
           <img className="content-center w-32" src={corgi} alt="corgi" />
         </div>
-        <li>Incoming Security Engineering Intern @ Charles Schwab</li>
+        <li>Investor @ Pace Capital</li>
 
         <li>In a previous life...</li>
-        <li>
-          Intern Associate @{" "}
-          <a
-            className="underline"
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.pacecapital.com/"
-          >
-            Pace Capital
-          </a>
-        </li>
+        <li>Security Engineer @ Charles Schwab</li>
         <li>
           Summer Associate @{" "}
           <a
