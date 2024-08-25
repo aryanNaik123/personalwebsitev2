@@ -14,9 +14,6 @@ export default function Nav() {
           <Link to="/writing">Writing↗</Link>
         </h1>
         <h1 className="font-medium hover:italic">
-          <Link to="/projects">Projects↗</Link>
-        </h1>
-        <h1 className="font-medium hover:italic">
           <Link to="/library">Library↗</Link>
         </h1>
       </div>
