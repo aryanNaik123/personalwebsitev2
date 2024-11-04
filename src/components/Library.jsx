@@ -99,6 +99,24 @@ export default function Library() {
           author="Frank Herbert, Dune"
         />
       </div>
+      <br></br>
+      <hr className="bg-gray-500 w-6/12 m-auto"></hr>
+      <br></br>
+      <h2 className="text-xl text-center">Blog Roll</h2>
+      <ul>
+        <li>https://sarv.substack.com/</li>
+        <li>https://guzey.com/</li>
+        <li>https://www.henrikkarlsson.xyz/</li>
+        <li>https://sive.rs/</li>
+        <li>https://web.archive.org/web/20230930071755mp_/https://www.spakhm.com/archive</li>
+        <li>https://grahamduncan.blog/</li>
+        <li>https://nadia.xyz/posts/</li> 
+        <li>https://near.blog/</li>
+        <li>https://www.neelnanda.io/</li>
+        <li>https://scottaaronson.blog/</li>
+        <li>https://nabeelqu.co/</li>
+        <li>https://kaiwenwang.com</li>
+      </ul>
     </div>
   );
 }
