@@ -9,7 +9,7 @@ export default function AboutMe() {
         ⏮️
       </Link>
 
-      <ul className="text-xl ml-5 mt-5 text-center">
+      <ul className=" ml-5 mt-5 text-center">
         <li>
           Lover of Birkenstocks, Coding, Corgis, Gameboys, Cognitive Science,
           Longevity, Space, Philosophy, and Startups
@@ -18,7 +18,26 @@ export default function AboutMe() {
         <div className="flex justify-center items-center">
           <img className="content-center w-32" src={corgi} alt="corgi" />
         </div>
-        <li>Investor @ Pace Capital</li>
+        <li>
+          Investor @{" "}
+          <a
+            href="https://desktop.pacecapital.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            Pace Capital
+          </a>
+        </li>
+        <li>
+          <h1>I'm interested in...</h1>
+          <p>Aesthetic curation</p>
+          <p>Youtube videos, long form, video essays, playlists, raw unedited experiences</p>
+          <p>Personal websites + Blogs</p>
+          <p>Early/Childhood Education that actively develops polymaths and intellectuals</p>
+          <p>Software that replaces processes end to end processes</p>
+          <p>Gadgets, gizmos, etc</p>
+        </li>
       </ul>
     </div>
   );
