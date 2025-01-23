@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './DvdLogo.css';
 import { albumCovers } from '../albumCovers';
 
@@ -6,24 +6,97 @@ const DvdLogo = () => {
   const [showSelector, setShowSelector] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(0);
   const [albumImage, setAlbumImage] = useState(albumCovers[0].url);
+  const [position, setPosition] = useState(() => ({
+    x: window.innerWidth - 300,  // container width
+    y: window.innerHeight - 300  // container height
+  }));
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const dvdRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (isDragging && dvdRef.current) {
+        const newX = e.clientX - dragOffset.x;
+        const newY = e.clientY - dragOffset.y;
+        
+        // Keep DVD within viewport bounds
+        const dvdRect = dvdRef.current.getBoundingClientRect();
+        const maxX = window.innerWidth - dvdRect.width;
+        const maxY = window.innerHeight - dvdRect.height;
+        
+        setPosition({
+          x: Math.max(0, Math.min(newX, maxX)),
+          y: Math.max(0, Math.min(newY, maxY))
+        });
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+    };
+
+    if (isDragging) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', handleMouseUp);
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [isDragging, dragOffset]);
+
+  const handleMouseDown = (e) => {
+    if (dvdRef.current) {
+      const dvdRect = dvdRef.current.getBoundingClientRect();
+      setDragOffset({
+        x: e.clientX - dvdRect.left,
+        y: e.clientY - dvdRect.top
+      });
+      setIsDragging(true);
+    }
+  };
+
+  const handleClick = (e) => {
+    if (!isDragging) {
+      setShowSelector(!showSelector);
+    }
+  };
+
 
   return (
     <div 
+      ref={dvdRef}
+      onMouseDown={handleMouseDown}
       style={{
         position: 'fixed',
-        bottom: 0,
-        right: 0,
+        left: position.x,
+        top: position.y,
         width: '300px',
         height: '300px',
         overflow: 'visible',
+        zIndex: isDragging ? 1001 : 1000,
+        cursor: 'move',
+        background: 'rgba(0, 0, 0, 0.001)',  // Extremely subtle background to make entire area draggable
+        borderRadius: '8px',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
       }}
     >
       {showSelector && (
         <div 
           style={{
             position: 'absolute',
-            bottom: '320px',
-            right: '20px',
+            ...(position.y < window.innerHeight / 2 
+              ? {
+                  top: '320px',
+                  right: '20px',
+                } : {
+                  bottom: '320px',
+                  right: '20px',
+                }
+            ),
             zIndex: 1000,
             display: 'flex',
             flexDirection: 'column',
@@ -84,7 +157,7 @@ const DvdLogo = () => {
       )}
       <div
         className="dvd-logo"
-        onClick={() => setShowSelector(!showSelector)}
+        onClick={handleClick}
         style={{
           position: 'absolute',
           left: '75px',  // Fixed position in the middle of container (300px - 150px)/2
@@ -103,6 +176,7 @@ const DvdLogo = () => {
           <img
             src={albumImage}
             alt="Album Cover"
+            draggable="false"
             style={{
               position: 'absolute',
               top: 0,
