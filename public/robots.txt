@@ -1,3 +1,7 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+Allow: /rss.xml
+
+# Sitemap
+Sitemap: https://aryannaik.com/sitemap.xml

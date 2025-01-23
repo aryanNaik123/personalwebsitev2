@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+    <title>Aryan Naik's Blog</title>
+    <link>https://aryannaik.com</link>
+    <description>Personal blog of Aryan Naik</description>
+    <language>en-us</language>
+    <atom:link href="https://aryannaik.com/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 23 Jan 2024 09:09:34 -0500</lastBuildDate>
+
+    <item>
+        <title>Information Contagion and Echochambers</title>
+        <link>https://aryannaik.com/Information-Contagion-and-Echochambers</link>
+        <guid>https://aryannaik.com/Information-Contagion-and-Echochambers</guid>
+        <description><![CDATA[Information contagion runs rampant in the startup and venture ecosystem and produces mediocre outcomes...]]></description>
+        <content:encoded><![CDATA[Information contagion runs rampant in the startup and venture ecosystem and produces mediocre outcomes. As investors in the frontiers and fringes of technology, we are inherently supposed to invest in contrarian and/or non-consensus ideas to produce returns. Comically, investors are the most prone to groupthink. We are quick to recite talking points from the newest All-In Podcast or viral tweet. This happens in various echo chambers online and offline. This can also be extrapolated to advice given on the internet or by peers and mentors. These inputs should be weighted appropriately before applied and should not serve as a substitute for experience.]]></content:encoded>
+    </item>
+
+    <item>
+        <title>Joining Pace Capital</title>
+        <link>https://aryannaik.com/Joining-Pace-Capital</link>
+        <guid>https://aryannaik.com/Joining-Pace-Capital</guid>
+        <description><![CDATA[Finding my way to Pace: Becoming a professional rabbit-holer...]]></description>
+        <content:encoded><![CDATA[Finding my way to Pace: Becoming a professional rabbit-holer
+
+I've always found fall to be the true start of the new year, and some seem to agree—Diwali and Rosh Hashanah both being in the fall.
+
+I've also found that true in my life, the fall always seems to bring the unexpected. This fall was no different, as I left school and moved to NYC to join the Pace team full-time.]]></content:encoded>
+    </item>
+
+    <item>
+        <title>Memory and Learning</title>
+        <link>https://aryannaik.com/Memory-and-Learning</link>
+        <guid>https://aryannaik.com/Memory-and-Learning</guid>
+        <description><![CDATA[Does memory = learning? The ability to learn is the ultimate meta-skill...]]></description>
+        <content:encoded><![CDATA[Does memory = learning?
+
+The ability to learn is the ultimate meta-skill and acts as a multiplier on any efforts you undertake.
+
+And since it's a skill, you can get better at it.]]></content:encoded>
+    </item>
+
+    <item>
+        <title>Principles</title>
+        <link>https://aryannaik.com/Principles</link>
+        <guid>https://aryannaik.com/Principles</guid>
+        <description><![CDATA[Be as honest as possible. Follow your curiosity. Practice Mindfulness...]]></description>
+        <content:encoded><![CDATA[Be as honest as possible.
+Follow your curiosity
+Practice Mindfulness.
+Close the feedback loop between idea and action.
+Start Now (Just do It)
+Learn How To learn
+Everything is figure-out-able
+Find balance of technology use (Digital Minimalism Cal Newport)
+Uninstall Copes
+Strive to be more agentic]]></content:encoded>
+    </item>
+
+    <item>
+        <title>Copium</title>
+        <link>https://aryannaik.com/Copium</link>
+        <guid>https://aryannaik.com/Copium</guid>
+        <description><![CDATA[If you're using something as a substitute for emotional regulation its not a good idea...]]></description>
+        <content:encoded><![CDATA[If you're using something as a substitute for emotional regulation its not a good idea.
+Learn to figure out how you're avoiding emotional regulation.
+Copes often leave us in a worse place than we started in.]]></content:encoded>
+    </item>
+
+</channel>
+</rss>

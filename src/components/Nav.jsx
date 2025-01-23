@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Clock from "./Clock";
+import "./Nav.css";
 
 export default function Nav() {
   return (
     <div>
       <header className="mt-2 text-2xl">Aryan Naik</header>
       <div className="w-20 ml-5 text-left nav">
-        <h1 className="font-medium hover:italic">
-          <Link to="/about">About↗</Link>
+        <h1 className="font-medium">
+          <Link to="/about" className="nav-link">About↗</Link>
         </h1>
-        <h1 className="font-medium hover:italic">
-          <Link to="/writing">Writing↗</Link>
+        <h1 className="font-medium">
+          <Link to="/writing" className="nav-link">Writing↗</Link>
         </h1>
-        <h1 className="font-medium hover:italic">
-          <Link to="/library">Library↗</Link>
+        <h1 className="font-medium">
+          <Link to="/library" className="nav-link">Library↗</Link>
         </h1>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
