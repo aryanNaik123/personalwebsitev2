@@ -2,6 +2,7 @@ import React from "react";
 import Quote from "./Quote";
 import { Link } from "react-router-dom";
 import { Spotify } from "react-spotify-embed";
+import Bookmarks from "./Bookmarks";
 export default function Library() {
   return (
     <div>
@@ -117,6 +118,10 @@ export default function Library() {
         <li>https://nabeelqu.co/</li>
         <li>https://kaiwenwang.com</li>
       </ul>
+      <br></br>
+      <hr className="bg-gray-500 w-6/12 m-auto"></hr>
+      <br></br>
+      <Bookmarks />
     </div>
   );
 }
