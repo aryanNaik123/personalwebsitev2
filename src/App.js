@@ -15,6 +15,7 @@ import PostEditor from "./components/admin/PostEditor";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 inject()
+Analytics()
 
 function App() {
   useEffect(() => {
