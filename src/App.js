@@ -15,8 +15,6 @@ import PostEditor from "./components/admin/PostEditor";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 inject()
-Analytics()
-
 function App() {
   useEffect(() => {
     document.title = "Aryan Naik";
@@ -24,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <Analytics />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<><Nav /><DvdLogo /></>} />
