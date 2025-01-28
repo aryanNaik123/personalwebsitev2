@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react"
+import { inject } from '@vercel/analytics';
 import "./App.css";
 import Nav from "./components/Nav";
 import DvdLogo from "./components/DvdLogo";
@@ -11,6 +13,8 @@ import AdminLogin from "./components/admin/AdminLogin";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import PostEditor from "./components/admin/PostEditor";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+
+inject()
 
 function App() {
   useEffect(() => {
