@@ -33,7 +33,14 @@ export default function Nav() {
           <br></br>
           <span>Status: down another 🕳️🐇</span>
           <br></br>
-          <span className="">Say hi: aryannnaik01[at]gmail[dot]com</span>
+          <p className="mt-4">
+            <a 
+              href="mailto:aryan@pacecapital.com?subject=hey!&body=I%20found%20your%20website."
+              className="hover:italic"
+            >
+              Say hi
+            </a>
+          </p>
         </span>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
@@ -60,10 +67,17 @@ export default function Nav() {
               cron
             </a>
           </li>
+          <li className="hover:italic">
+            <a
+              href="https://cline.bot/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >cline</a>
+          </li>
         </ul>
       </div>
       <div className="bottom-0">
-        <p>Aryan © 2024</p>
+        <p>Aryan © 2025</p>
         <Clock />
       </div>
     </div>
