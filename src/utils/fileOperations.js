@@ -79,8 +79,11 @@ export function getBlogPosts() {
 
 // Function to get book notes
 export function getBookNotes() {
-  const data = readData('bookNotes');
-  return data.books;
+  // Always get fresh data from the JSON file
+  const freshData = initialBookData;
+  // Update localStorage with the fresh data
+  writeData('books', freshData);
+  return freshData.books;
 }
 
 // Function to add blog post
@@ -92,9 +95,9 @@ export function addBlogPost(post) {
 
 // Function to add book note
 export function addBookNote(book) {
-  const data = readData('bookNotes');
+  const data = readData('books');
   data.books.push(book);
-  writeData('bookNotes', data);
+  writeData('books', data);
 }
 
 // Function to update blog post
@@ -106,9 +109,13 @@ export function updateBlogPost(index, post) {
 
 // Function to update book note
 export function updateBookNote(index, book) {
-  const data = readData('bookNotes');
+  const data = readData('books');
   data.books[index] = book;
-  writeData('bookNotes', data);
+  writeData('books', data);
+  // Dispatch custom event to notify listeners
+  window.dispatchEvent(new CustomEvent('storageChange', { 
+    detail: { key: 'books' } 
+  }));
 }
 
 // Function to delete blog post
@@ -120,13 +127,13 @@ export function deleteBlogPost(index) {
 
 // Function to delete book note
 export function deleteBookNote(index) {
-  const data = readData('bookNotes');
+  const data = readData('books');
   data.books.splice(index, 1);
-  writeData('bookNotes', data);
+  writeData('books', data);
 }
-
+  
 // Function to reset to initial data (useful for testing)
 export function resetToInitialData() {
   writeData('blogPosts', initialBlogData);
-  writeData('bookNotes', initialBookData);
+  writeData('books', initialBookData);
 }

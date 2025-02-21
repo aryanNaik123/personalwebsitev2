@@ -1,61 +1,41 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import Post from "./Post";
 import { getBlogPosts, getBookNotes } from "../utils/fileOperations";
 
 export default function Writing() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [bookNotes, setBookNotes] = useState([]);
-  const location = useLocation();
 
-  // Initialize content on mount
-  useEffect(() => {
-    console.log('Initializing content...');
+  // Function to refresh data
+  const refreshData = () => {
     const blogs = getBlogPosts();
     const books = getBookNotes();
-    console.log('Initial blogs:', blogs);
-    console.log('Initial books:', books);
     setBlogPosts(blogs);
     setBookNotes(books);
-  }, []); // Only run once on mount
+  };
 
-  // Handle storage events for updates
+  // Initialize content on mount and set up storage listeners
   useEffect(() => {
-    const handleStorageChange = (e) => {
-      console.log('Storage event received:', e);
-      
-      // Handle custom storageChange event
-      if (e.type === 'storageChange') {
-        const { key } = e.detail;
-        if (key === 'blogPosts') {
-          console.log('Updating blog posts from storage event');
-          setBlogPosts(getBlogPosts());
-        } else if (key === 'bookNotes') {
-          console.log('Updating book notes from storage event');
-          setBookNotes(getBookNotes());
-        }
-      }
-      // Handle standard storage event
-      else if (e.type === 'storage') {
-        if (e.key === 'blogPosts') {
-          console.log('Updating blog posts from storage event');
-          setBlogPosts(getBlogPosts());
-        } else if (e.key === 'bookNotes') {
-          console.log('Updating book notes from storage event');
-          setBookNotes(getBookNotes());
-        }
+    refreshData();
+
+    // Listen for storage changes
+    const handleStorageChange = (event) => {
+      if (event.detail?.key === 'books' || event.key === 'books') {
+        refreshData();
       }
     };
 
-    // Listen for both custom and standard storage events
+    // Add event listeners
     window.addEventListener('storageChange', handleStorageChange);
     window.addEventListener('storage', handleStorageChange);
 
+    // Cleanup
     return () => {
       window.removeEventListener('storageChange', handleStorageChange);
       window.removeEventListener('storage', handleStorageChange);
     };
-  }, []); // No dependencies needed since we're using closure over state setters
+  }, []); // Only run once on mount
 
   return (
     <>

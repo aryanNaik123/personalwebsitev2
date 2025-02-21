@@ -1,4 +1,7 @@
 {
   "books": [
+    {"title": "The Power Law",
+     "author": "Sebastian Mallaby", 
+     "content": "A book about the power law (WIP)"}
   ]
 }
