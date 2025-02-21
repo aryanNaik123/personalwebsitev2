@@ -104,19 +104,20 @@ export default function Library() {
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
       <br></br>
       <h2 className="text-xl text-center">Blog Roll</h2>
-      <ul>
-        <li>https://sarv.substack.com/</li>
-        <li>https://guzey.com/</li>
-        <li>https://www.henrikkarlsson.xyz/</li>
-        <li>https://sive.rs/</li>
-        <li>https://web.archive.org/web/20230930071755mp_/https://www.spakhm.com/archive</li>
-        <li>https://grahamduncan.blog/</li>
-        <li>https://nadia.xyz/posts/</li> 
-        <li>https://near.blog/</li>
-        <li>https://www.neelnanda.io/</li>
-        <li>https://scottaaronson.blog/</li>
-        <li>https://nabeelqu.co/</li>
-        <li>https://kaiwenwang.com</li>
+      <br></br>
+      <ul className="space-y-1">
+        <li><a href="https://sarv.substack.com/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Sarv's Newsletter</a></li>
+        <li><a href="https://guzey.com/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Alexey Guzey</a></li>
+        <li><a href="https://www.henrikkarlsson.xyz/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Henrik Karlsson</a></li>
+        <li><a href="https://sive.rs/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Derek Sivers</a></li>
+        <li><a href="https://web.archive.org/web/20230930071755mp_/https://www.spakhm.com/archive" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Slava Pakhomov</a></li>
+        <li><a href="https://grahamduncan.blog/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Graham Duncan</a></li>
+        <li><a href="https://nadia.xyz/posts/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Nadia Asparouhova</a></li>
+        <li><a href="https://near.blog/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Near Blog</a></li>
+        <li><a href="https://www.neelnanda.io/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Neel Nanda</a></li>
+        <li><a href="https://scottaaronson.blog/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Scott Aaronson</a></li>
+        <li><a href="https://nabeelqu.co/" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Nabeel Qureshi</a></li>
+        <li><a href="https://kaiwenwang.com" className="transition-all duration-200 ease-in-out hover:bg-gray-200 hover:px-3 py-0.5 rounded" target="_blank" rel="noopener noreferrer">Kaiwen Wang</a></li>
       </ul>
       <br></br>
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
