@@ -9,6 +9,7 @@ import AboutMe from "./components/AboutMe";
 import Writing from "./components/Writing";
 import Projects from "./components/Projects";
 import Library from "./components/Library";
+import Bookmarks from "./components/Bookmarks";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import PostEditor from "./components/admin/PostEditor";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/writing/*" element={<Writing />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/library" element={<Library />} />
+          <Route path="/links" element={<Bookmarks />} />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />

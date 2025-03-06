@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Bookmarks() {
   const [bookmarksData, setBookmarksData] = useState({ bookmarks: [], lastUpdated: '' });
@@ -26,7 +27,10 @@ export default function Bookmarks() {
   
   return (
     <div className="mb-8">
-      <h2 className="text-xl text-center mb-4">Bookmarks</h2>
+      <Link to="/" className="ml-5 mt-3 float-left">
+        ⏮️
+      </Link>
+      <h2 className="text-xl text-center mb-4">Links</h2>
       <ul className="text-left pl-5 text-md">
         {bookmarks.map((bookmark) => (
           <li key={bookmark.id} className="mb-3">

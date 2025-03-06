@@ -17,6 +17,9 @@ export default function Nav() {
         <h1 className="font-medium">
           <Link to="/library" className="nav-link">Library↗</Link>
         </h1>
+        <h1 className="font-medium">
+          <Link to="/links" className="nav-link">Links↗</Link>
+        </h1>
       </div>
       <div className="mt-2 text-left font-medium ml-5">
         <span>
