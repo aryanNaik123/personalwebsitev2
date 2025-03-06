@@ -11,6 +11,7 @@ export default async function handler(req, res) {
   const CURIUS_API = 'https://curius.app/api/users/2138/links?page=0';
   
   try {
+    // Fetch bookmarks from Curius API
     const response = await fetch(CURIUS_API, {
       headers: {
         'Accept': 'application/json'
@@ -22,9 +23,31 @@ export default async function handler(req, res) {
     }
     
     const data = await response.json();
+    const bookmarks = data.userSaved || [];
+    
+    // Process bookmarks to extract comments from highlights
+    const bookmarksWithComments = bookmarks.map(bookmark => {
+      // Check if the bookmark has highlights with comments
+      if (bookmark.highlights && bookmark.highlights.length > 0) {
+        // Find the first highlight with a comment
+        const highlightWithComment = bookmark.highlights.find(highlight => 
+          highlight.comment && highlight.comment.text
+        );
+        
+        if (highlightWithComment) {
+          return {
+            ...bookmark,
+            highlightedText: highlightWithComment.highlight,
+            comment: highlightWithComment.comment
+          };
+        }
+      }
+      
+      return bookmark;
+    });
     
     return res.status(200).json({
-      bookmarks: data.userSaved || [],
+      bookmarks: bookmarksWithComments,
       lastUpdated: new Date().toISOString()
     });
   } catch (error) {

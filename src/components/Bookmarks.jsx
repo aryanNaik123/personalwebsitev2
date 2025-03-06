@@ -41,6 +41,14 @@ export default function Bookmarks() {
             {bookmark.snippet && (
               <p className="text-sm text-gray-600 mt-1">{bookmark.snippet}</p>
             )}
+            {bookmark.highlightedText && bookmark.comment && (
+              <div className="mt-1 border-l-2 border-blue-300 pl-2">
+                <p className="text-sm text-gray-700">"{bookmark.highlightedText}"</p>
+                <p className="text-sm text-blue-500 italic">
+                  Comment: "{bookmark.comment.text}"
+                </p>
+              </div>
+            )}
           </li>
         ))}
       </ul>
