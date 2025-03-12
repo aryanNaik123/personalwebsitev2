@@ -10,7 +10,13 @@ export default function Bookmarks() {
     fetch('/api/bookmarks')
       .then(res => res.json())
       .then(data => {
-        setBookmarksData(data);
+        if (data.success === false) {
+          // API returned an error with a specific message
+          setError(data.error || 'Failed to load bookmarks');
+          setBookmarksData({ bookmarks: [], lastUpdated: data.lastUpdated });
+        } else {
+          setBookmarksData(data);
+        }
         setLoading(false);
       })
       .catch(err => {
@@ -31,31 +37,35 @@ export default function Bookmarks() {
         ⏮️
       </Link>
       <h2 className="text-xl text-center mb-4">Links</h2>
-      <ul className="text-left pl-5 text-md">
-        {bookmarks.map((bookmark) => (
-          <li key={bookmark.id} className="mb-3">
-            <a 
-              href={bookmark.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
-              {bookmark.title || 'Untitled'}
-            </a>
-            {bookmark.snippet && (
-              <p className="text-sm text-gray-600 mt-1">{bookmark.snippet}</p>
-            )}
-            {bookmark.highlightedText && bookmark.comment && (
-              <div className="mt-1 border-l-2 border-blue-300 pl-2">
-                <p className="text-sm text-gray-700">"{bookmark.highlightedText}"</p>
-                <p className="text-sm text-blue-500 italic">
-                  Comment: "{bookmark.comment.text}"
-                </p>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
+      {bookmarks.length === 0 ? (
+        <p className="text-center text-gray-500">No bookmarks available at the moment.</p>
+      ) : (
+        <ul className="text-left pl-5 text-md">
+          {bookmarks.map((bookmark) => (
+            <li key={bookmark.id} className="mb-3">
+              <a 
+                href={bookmark.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                {bookmark.title || 'Untitled'}
+              </a>
+              {bookmark.snippet && (
+                <p className="text-sm text-gray-600 mt-1">{bookmark.snippet}</p>
+              )}
+              {bookmark.highlightedText && bookmark.comment && (
+                <div className="mt-1 border-l-2 border-blue-300 pl-2">
+                  <p className="text-sm text-gray-700">"{bookmark.highlightedText}"</p>
+                  <p className="text-sm text-blue-500 italic">
+                    Comment: "{bookmark.comment.text}"
+                  </p>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
       <p className="text-xs text-gray-500 text-center mt-4">
         Last updated: {new Date(lastUpdated).toLocaleString()}
       </p>
