@@ -68,6 +68,7 @@ export default function Bookmarks() {
       )}
       <p className="text-xs text-gray-500 text-center mt-4">
         Last updated: {new Date(lastUpdated).toLocaleString()}
+        {bookmarksData.fromCache && <span className="ml-1">(Cached version)</span>}
       </p>
     </div>
   );

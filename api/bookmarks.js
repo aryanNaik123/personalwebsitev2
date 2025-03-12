@@ -114,6 +114,9 @@ export default async function handler(req, res) {
     const data = await response.json();
     const bookmarksWithComments = processBookmarks(data);
     
+    // Set caching headers for successful response (30 minutes fresh, 24 hours stale)
+    res.setHeader('Cache-Control', 's-maxage=1800, stale-while-revalidate=86400');
+    
     // Return successful response
     return res.status(200).json({
       bookmarks: bookmarksWithComments,
@@ -139,6 +142,9 @@ export default async function handler(req, res) {
         errorMessage = `API returned error status: ${statusMatch[1]}`;
       }
     }
+    
+    // Prevent caching of error responses
+    res.setHeader('Cache-Control', 'no-store');
     
     // Return error response
     return res.status(statusCode).json({ 
