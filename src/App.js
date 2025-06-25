@@ -26,7 +26,7 @@ function App() {
       <Analytics />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<><Nav /><DvdLogo /><div className="fixed bottom-4 w-full text-center text-sm text-gray-500">Made with ❤️ in NYC</div></>} />
+          <Route path="/" element={<><Nav /><DvdLogo /></>} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/writing/*" element={<Writing />} />
           <Route path="/projects" element={<Projects />} />
