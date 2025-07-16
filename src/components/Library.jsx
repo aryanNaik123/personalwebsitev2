@@ -19,6 +19,7 @@ export default function Library() {
         <li>Getting Things Done by David Allen</li>
         <li>The Myth of Sisyphus by Albert Camus</li>
         <li>Project Hail Mary Novel by Andy Weir</li>
+        <li>Engines That Move Markets by Alasdair Nairn</li>
       </ul>
       <br></br>
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
@@ -57,7 +58,7 @@ export default function Library() {
 
       <h2 className="text-xl text-center">Quotes</h2>
       <br></br>
-      <div className="text-left text-sm pl-5">
+      <div className="text-left text-sm pl-5 pr-5">
         <Quote
           text="“In my whole life, I have known no wise people (over a broad subject
             matter area) who didn't read all the time—none. Zero. You'd be
@@ -102,6 +103,10 @@ export default function Library() {
         <Quote 
           text="“If you do everything, you'll win.”"
           author="Lyndon B. Johnson"
+        />
+        <Quote
+          text="“The function of the overwhelming majority of your artwork is simply to teach you how to make the small fraction of your artwork that soars. One of the basic and difficult lessons every artist must learn is that even the failed pieces are essential. X-rays of famous paintings reveal that even master artists sometimes made basic mid-course corrections (or deleted really dumb mistakes) by overpainting the still-wet canvas. The point is that you learn how to make your work by making your work, and a great many of the pieces you make along the way will never stand out as finished art. The best you can do is make art you care about — and lots of it!”"
+          author="David Bayles, Art & Fear: Observations on the Perils (and Rewards) of Artmaking"
         />
       </div>
       <br></br>
