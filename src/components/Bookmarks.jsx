@@ -37,6 +37,20 @@ export default function Bookmarks() {
         ⏮️
       </Link>
       <h2 className="text-xl text-center mb-4">Links</h2>
+      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 text-center rounded">
+        <span>
+          Enjoy curated links? Check out my weekly picks and commentary on my&nbsp;
+          <a
+            href="https://aryanlinks.substack.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline font-semibold"
+          >
+            Substack: Aryan’s Links
+          </a>
+          !
+        </span>
+      </div>
       {bookmarks.length === 0 ? (
         <p className="text-center text-gray-500">No bookmarks available at the moment.</p>
       ) : (
