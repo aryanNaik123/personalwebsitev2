@@ -37,7 +37,7 @@ export default function Bookmarks() {
         ⏮️
       </Link>
       <h2 className="text-xl text-center mb-4">Links</h2>
-      <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 text-center rounded">
+      <div className="border-l-4 text-yellow-700 p-4 mb-4 text-center rounded">
         <span>
           Enjoy curated links? Check out my weekly picks and commentary on my&nbsp;
           <a
