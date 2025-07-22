@@ -39,7 +39,7 @@ export default function Bookmarks() {
       <h2 className="text-xl text-center mb-4">Links</h2>
       <div className="border-l-4 p-4 mb-4 text-center rounded">
         <span>
-          Enjoy curated links? Check out &nbsp;
+          Enjoy curated links? Check out&nbsp;
           <a
             href="https://aryanlinks.substack.com/"
             target="_blank"
