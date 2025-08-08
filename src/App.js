@@ -16,6 +16,16 @@ import PostEditor from "./components/admin/PostEditor";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 inject()
+
+// Component for redirecting to external URLs
+const ExternalRedirect = ({ to }) => {
+  useEffect(() => {
+    window.location.href = to;
+  }, [to]);
+  
+  return <div>Redirecting...</div>;
+};
+
 function App() {
   useEffect(() => {
     document.title = "Aryan Naik";
@@ -32,6 +42,10 @@ function App() {
           <Route path="/projects" element={<Projects />} />
           <Route path="/library" element={<Library />} />
           <Route path="/links" element={<Bookmarks />} />
+          <Route 
+            path="/links-4" 
+            element={<ExternalRedirect to="https://aryanlinks.substack.com/p/aryan-links-issue-no-4" />} 
+          />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />
