@@ -40,7 +40,7 @@ export default function Writing() {
   return (
     <>
       <div>
-        <Link to="/" className="ml-5 mt-3 float-left">
+        <Link to="/writing" className="ml-5 mt-3 float-left">
           ⏮️
         </Link>
         <div className="pt-10 pl-3 text-left">
