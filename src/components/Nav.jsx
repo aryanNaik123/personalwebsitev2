@@ -43,6 +43,15 @@ export default function Nav() {
             >
               Say hi
             </a>
+            {" or "}
+            <a 
+              href="https://www.admonymous.co/aryan-naik"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hover:italic"
+            >
+              give anonymous feedback
+            </a>
           </p>
         </span>
       </div>
