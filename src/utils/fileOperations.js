@@ -73,8 +73,11 @@ function writeData(key, data) {
 
 // Function to get blog posts
 export function getBlogPosts() {
-  const data = readData('blogPosts');
-  return data.blogs;
+  // Always get fresh data from the JSON file
+  const freshData = initialBlogData;
+  // Update localStorage with the fresh data
+  writeData('blogPosts', freshData);
+  return freshData.blogs;
 }
 
 // Function to get book notes
