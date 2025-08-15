@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Clock from "./Clock";
+import SocialIcons from "./SocialIcons";
 import "./Nav.css";
 
 export default function Nav() {
@@ -87,6 +88,9 @@ export default function Nav() {
             >cline</a>
           </li>
         </ul>
+      </div>
+      <div className="mt-6 ml-5 text-left">
+        <SocialIcons />
       </div>
       <div className="bottom-0">
         <p>Aryan © 2025</p>
