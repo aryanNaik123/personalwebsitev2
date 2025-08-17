@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useLocation } from "react-router-dom";
 import Post from "./Post";
 import { getBlogPosts, getBookNotes } from "../utils/fileOperations";
 
 export default function Writing() {
   const [blogPosts, setBlogPosts] = useState([]);
   const [bookNotes, setBookNotes] = useState([]);
+  const location = useLocation();
 
   // Function to refresh data
   const refreshData = () => {
@@ -37,10 +38,16 @@ export default function Writing() {
     };
   }, []); // Only run once on mount
 
+  // Determine if we're on the main writing page or viewing a post
+  const isMainWritingPage = location.pathname === '/writing' || location.pathname === '/writing/';
+
   return (
     <>
       <div>
-        <Link to="/writing" className="ml-5 mt-3 float-left">
+        <Link 
+          to={isMainWritingPage ? "/" : "/writing"} 
+          className="ml-5 mt-3 float-left"
+        >
           ⏮️
         </Link>
         <div className="pt-10 pl-3 text-left">
