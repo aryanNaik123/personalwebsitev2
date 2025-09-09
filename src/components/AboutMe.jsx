@@ -21,7 +21,7 @@ export default function AboutMe() {
         <li>
           Investor @{" "}
           <a
-            href="https://desktop.pacecapital.com/"
+            href="https://pacecapital.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
