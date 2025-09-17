@@ -2,6 +2,9 @@
   "books": [
     {"title": "The Power Law",
      "author": "Sebastian Mallaby", 
-     "content": "A book about the power law (WIP)"}
+     "content": "A book about the power law (WIP)"},
+    {"title": "Engines That Move Markets",
+     "author": "Alasdair Nairn",
+     "content": "(WIP)"}
   ]
 }

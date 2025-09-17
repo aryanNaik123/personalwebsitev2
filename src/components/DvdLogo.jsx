@@ -290,7 +290,6 @@ const DvdLogo = () => {
   }, [isDragging, dragOffset, position.x, position.y]);
 
   // Handle window resize with useCallback to avoid dependency issues
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleResize = React.useCallback(() => {
     if (dvdRef.current) {
       const dvdRect = dvdRef.current.getBoundingClientRect();
@@ -302,7 +301,7 @@ const DvdLogo = () => {
         y: Math.min(prev.y, maxY)
       }));
     }
-  }, [dvdRef]);
+  }, [dvdRef, position]);
   
   useEffect(() => {
     window.addEventListener('resize', handleResize);
