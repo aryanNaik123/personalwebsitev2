@@ -4,12 +4,13 @@ import corgi from "../images/corgi.png";
 
 export default function AboutMe() {
   return (
-    <div>
-      <Link to="/" className="ml-5 mt-3 float-left">
+    <div className="px-4 sm:px-0">
+      <Link to="/" className="ml-5 mt-3 float-left mb-8 sm:mb-0">
         ⏮️
       </Link>
+      <br></br>
 
-      <ul className=" ml-5 mt-5 text-center">
+      <ul className="ml-5 mt-5 text-center">
         <li>
           Lover of Birkenstocks, Coding, Corgis, Gameboys, Cognitive Science,
           Longevity, Space, Philosophy, and Startups
