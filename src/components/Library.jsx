@@ -25,32 +25,42 @@ export default function Library() {
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
       <br></br>
       <h2 className="text-xl text-center">Songs</h2>
-      <div className="grid grid-cols-3 gap-y-2 pl-5 pt-5 gap-x-0">
-        <Spotify
-          width={300}
-          wide
-          link="https://open.spotify.com/track/5ujh1I7NZH5agbwf7Hp8Hc?si=d4af94f100e642ba"
-        />
-        <Spotify
-          width={300}
-          wide
-          link="https://open.spotify.com/track/4KjnaUNYPwGnJjoeTFlt91?si=8b050d60609940a0"
-        />
-        <Spotify
-          width={300}
-          wide
-          link="https://open.spotify.com/track/0PV1TFUMTBrDETzW6KQulB?si=b79339de93464260"
-        />
-        <Spotify
-          width={300}
-          wide
-          link="https://open.spotify.com/track/2obblQ6tcePeOEVJV6nEGD?si=6ea44974f3014dab"
-        />
-        <Spotify
-          width={300}
-          wide
-          link="https://open.spotify.com/track/2RPbEp0DyBVlkRvvYKopO7?si=32705c1bd0384dde"
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-5 pt-5">
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/5ujh1I7NZH5agbwf7Hp8Hc?si=d4af94f100e642ba"
+          />
+        </div>
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/4KjnaUNYPwGnJjoeTFlt91?si=8b050d60609940a0"
+          />
+        </div>
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/0PV1TFUMTBrDETzW6KQulB?si=b79339de93464260"
+          />
+        </div>
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/2obblQ6tcePeOEVJV6nEGD?si=6ea44974f3014dab"
+          />
+        </div>
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/2RPbEp0DyBVlkRvvYKopO7?si=32705c1bd0384dde"
+          />
+        </div>
       </div>
       <br></br>
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
