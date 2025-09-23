@@ -50,7 +50,7 @@ export default function Writing() {
         >
           ⏮️
         </Link>
-        <div className="pt-10 pl-3 text-left">
+        <div className="pt-10 pl-3 pr-4 sm:pr-6 md:pr-8 lg:pr-12 text-left">
           <Routes>
             <Route
               path="/"
