@@ -6,7 +6,8 @@ const DEFAULT_RESPONSE = {
   bookmarks: [],
   lastUpdated: new Date().toISOString(),
   success: false,
-  error: 'Unable to fetch bookmarks'
+  error: 'No bookmarks available',
+  fromCache: false
 };
 
 // Fetch with a simple timeout
@@ -97,6 +98,7 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Methods', 'GET');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
+  // Fetch real bookmarks from Curius API
   const CURIUS_API = 'https://curius.app/api/users/2138/links?page=0';
   
   try {
@@ -146,12 +148,13 @@ export default async function handler(req, res) {
     // Prevent caching of error responses
     res.setHeader('Cache-Control', 'no-store');
     
-    // Return error response
+    // Return error response with empty bookmarks
     return res.status(statusCode).json({ 
       error: errorMessage,
       bookmarks: [],
       lastUpdated: new Date().toISOString(),
-      success: false
+      success: false,
+      fromCache: false
     });
   }
 }

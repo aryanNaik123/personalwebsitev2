@@ -33,11 +33,14 @@ export default function Bookmarks() {
   
   return (
     <div className="mb-8">
-      <Link to="/" className="ml-5 mt-3 float-left">
-        ⏮️
-      </Link>
-      <h2 className="text-xl text-center mb-4">Links</h2>
-      <div className="border-l-4 p-4 mb-4 text-center rounded">
+      <div className="flex items-center justify-between mb-4">
+        <Link to="/" className="ml-5">
+          ⏮️
+        </Link>
+        <h2 className="text-xl text-center flex-1">Links</h2>
+        <div className="w-8"></div> {/* Spacer to balance the layout */}
+      </div>
+      <div className="p-4 mb-4 text-center rounded">
         <span>
           Enjoy curated links? Check out&nbsp;
           <a
@@ -46,7 +49,7 @@ export default function Bookmarks() {
             rel="noopener noreferrer"
             className="underline font-semibold"
           >
-            Aryan’s Links
+            Aryan's Links
           </a>
           !
         </span>
@@ -54,7 +57,7 @@ export default function Bookmarks() {
       {bookmarks.length === 0 ? (
         <p className="text-center text-gray-500">No bookmarks available at the moment.</p>
       ) : (
-        <ul className="text-left pl-5 text-md">
+        <ul className="text-left pl-5 pr-5 text-md">
           {bookmarks.map((bookmark) => (
             <li key={bookmark.id} className="mb-3">
               <a 
