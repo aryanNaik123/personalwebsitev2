@@ -287,7 +287,7 @@ const DvdLogo = () => {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isDragging, dragOffset, position.x, position.y]);
+  }, [isDragging, dragOffset, position]);
 
   // Handle window resize with useCallback to avoid dependency issues
   const handleResize = React.useCallback(() => {
@@ -301,7 +301,7 @@ const DvdLogo = () => {
         y: Math.min(prev.y, maxY)
       }));
     }
-  }, [dvdRef, position]);
+  }, []);
   
   useEffect(() => {
     window.addEventListener('resize', handleResize);
