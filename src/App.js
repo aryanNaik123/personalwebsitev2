@@ -70,6 +70,10 @@ function App() {
             path="/links-15" 
             element={<ExternalRedirect to="https://aryanlinks.substack.com/p/aryan-links-issue-no-15" />} 
           />
+          <Route 
+            path="/links-16" 
+            element={<ExternalRedirect to="https://aryanlinks.substack.com/p/aryan-links-issue-no-16" />} 
+          />
           
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLogin />} />
