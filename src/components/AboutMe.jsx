@@ -19,6 +19,28 @@ export default function AboutMe() {
         <div className="flex justify-center items-center">
           <img className="content-center w-32" src={corgi} alt="corgi" />
         </div>
+        <div>
+          I like to read{" "}
+          <a
+            href="https://curius.app/aryan-naik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            blogs
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://www.goodreads.com/user/show/169945300-aryan-naik"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            books
+          </a>
+          .
+
+        </div>
         <li>
           Investor @{" "}
           <a
@@ -36,7 +58,6 @@ export default function AboutMe() {
           <p>Youtube videos, long form, video essays, playlists, raw unedited experiences</p>
           <p>Personal websites + Blogs</p>
           <p>Early/Childhood Education that actively develops polymaths and intellectuals</p>
-          <p>Software that replaces processes end to end processes</p>
           <p>Gadgets, gizmos, etc</p>
         </li>
       </ul>
