@@ -3,6 +3,7 @@ import Quote from "./Quote";
 import { Link } from "react-router-dom";
 import { Spotify } from "react-spotify-embed";
 import Bookmarks from "./Bookmarks";
+import Bookshelf from "./Bookshelf";
 export default function Library() {
   return (
     <div>
@@ -11,16 +12,7 @@ export default function Library() {
       </Link>
       <br></br>
       <br></br>
-      <h2 className="text-xl text-center">Books</h2>
-      <ul className="text-left pl-5 text-md">
-        <li>The Power Law: Venture Capital and the Making of the New Future</li>
-        <li>The Almanack of Naval Ravikant: A Guide to Wealth and Happiness</li>
-        <li>The Silo Series by Hugh Howey</li>
-        <li>Getting Things Done by David Allen</li>
-        <li>The Myth of Sisyphus by Albert Camus</li>
-        <li>Project Hail Mary Novel by Andy Weir</li>
-        <li>Engines That Move Markets by Alasdair Nairn</li>
-      </ul>
+      <Bookshelf />
       <br></br>
       <hr className="bg-gray-500 w-6/12 m-auto"></hr>
       <br></br>
@@ -59,6 +51,13 @@ export default function Library() {
             width="100%"
             wide
             link="https://open.spotify.com/track/2RPbEp0DyBVlkRvvYKopO7?si=32705c1bd0384dde"
+          />
+        </div>
+        <div className="w-full">
+          <Spotify
+            width="100%"
+            wide
+            link="https://open.spotify.com/track/4a9axdtH9qFx0nMiKjwChd?si=52f1f060c6634bf4"
           />
         </div>
       </div>

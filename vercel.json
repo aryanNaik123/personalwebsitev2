@@ -4,6 +4,10 @@
     {
       "src": "/api/bookmarks",
       "dest": "/api/bookmarks.js"
+    },
+    {
+      "src": "/api/books",
+      "dest": "/api/books.js"
     }
   ]
 }
