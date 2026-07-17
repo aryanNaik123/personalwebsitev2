@@ -1,0 +1,788 @@
+/* ── Entry animations ────────────────────────────────── */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes discIn {
+  from { opacity: 0; transform: scale(0.85) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { opacity: 0; transform: rotate(0deg); }
+  50%  { opacity: 1; }
+  100% { opacity: 0; transform: rotate(180deg); }
+}
+
+@keyframes slowSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes discSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes slotPulse {
+  0%, 100% { box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55), 0 0 0 0 rgba(74, 144, 226, 0); }
+  50%      { box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55), 0 0 18px -4px rgba(74, 144, 226, 0.15); }
+}
+
+@keyframes discFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/*
+ * Slot-in: 5-phase sequence
+ * 1. Disc appears above, tilted like it's being fed in edge-first
+ * 2. Slides down and rotates flat
+ * 3. Overshoots past center (pulled by mechanism)
+ * 4. Rebounds slightly upward
+ * 5. Settles with a micro-bounce
+ */
+@keyframes slotInsert {
+  0%   { opacity: 0;   transform: translateY(-80px) scale(1.12) rotateX(55deg); filter: brightness(1); }
+  18%  { opacity: 1;   transform: translateY(-30px) scale(1.06) rotateX(30deg); }
+  38%  { opacity: 1;   transform: translateY(10px)  scale(0.88) rotateX(0deg);  filter: brightness(1); }
+  48%  {               transform: translateY(4px)   scale(0.90) rotateX(0deg);  filter: brightness(1.6); }
+  62%  {               transform: translateY(-5px)  scale(1.03) rotateX(0deg);  filter: brightness(1); }
+  78%  {               transform: translateY(1.5px) scale(0.99) rotateX(0deg); }
+  100% {               transform: translateY(0)     scale(1)    rotateX(0deg);  filter: brightness(1); }
+}
+
+/* Disc shadow grows as it descends into the slot */
+@keyframes insertShadow {
+  0%   { opacity: 0; transform: translateX(-50%) scale(0.3); }
+  38%  { opacity: 0.5; transform: translateX(-50%) scale(1.2); }
+  48%  { opacity: 0; transform: translateX(-50%) scale(0.8); }
+  100% { opacity: 0; transform: translateX(-50%) scale(0); }
+}
+
+/* Slot visually "swallows" — brief depth pulse */
+@keyframes slotReceive {
+  0%   { box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55); }
+  30%  { box-shadow: inset 0 6px 28px rgba(0, 0, 0, 0.75), inset 0 0 40px rgba(0, 0, 0, 0.2); }
+  50%  { box-shadow: inset 0 2px 14px rgba(0, 0, 0, 0.55), inset 0 0 60px rgba(74, 144, 226, 0.06); }
+  100% { box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55); }
+}
+
+/* Groove opens to receive, then snaps shut */
+@keyframes grooveSwallow {
+  0%   { height: 4px; margin-top: -2px; opacity: 0.7; box-shadow: 0 1px 0 rgba(255,255,255,0.04); }
+  15%  { height: 14px; margin-top: -7px; opacity: 1;  box-shadow: 0 0 16px 3px rgba(74,144,226,0.3), 0 1px 0 rgba(255,255,255,0.04); }
+  35%  { height: 14px; margin-top: -7px; opacity: 1;  box-shadow: 0 0 16px 3px rgba(74,144,226,0.3); }
+  50%  { height: 2px; margin-top: -1px; opacity: 0.5; box-shadow: 0 0 8px 1px rgba(74,144,226,0.1); }
+  65%  { height: 0px; margin-top: 0px;  opacity: 0; }
+  100% { height: 0px; margin-top: 0px;  opacity: 0; }
+}
+
+/* Lock-in flash — expanding ring + glow */
+@keyframes slotLock {
+  0%   { opacity: 0; transform: scale(0.8); }
+  25%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+
+/* Chassis micro-shake on lock-in */
+@keyframes playerShake {
+  0%   { transform: translateY(0); }
+  15%  { transform: translateY(1.5px); }
+  30%  { transform: translateY(-1px); }
+  50%  { transform: translateY(0.8px); }
+  70%  { transform: translateY(-0.5px); }
+  100% { transform: translateY(0); }
+}
+
+/* Disc pops out on eject */
+@keyframes slotEject {
+  0%   { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); filter: brightness(1); }
+  25%  { opacity: 1; transform: translateY(4px) scale(0.95) rotateX(0deg); filter: brightness(1.3); }
+  55%  { opacity: 1; transform: translateY(-30px) scale(1.08) rotateX(25deg); }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.8)  rotateX(50deg); }
+}
+
+/* ── Page layout ─────────────────────────────────────── */
+
+.not-found-wrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.25rem 4rem;
+  animation: fadeUp 0.6s ease-out both;
+}
+
+.not-found-wrap *,
+.not-found-wrap *::before,
+.not-found-wrap *::after {
+  background-color: transparent;
+}
+
+.not-found-back {
+  position: fixed;
+  top: 0.85rem;
+  left: 1.25rem;
+  z-index: 10;
+  text-decoration: none;
+  font-size: 1.1rem;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.not-found-back:hover {
+  opacity: 1;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+
+.not-found-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease-out 0.08s both;
+}
+
+.not-found-title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #222;
+  margin: 0 0 0.4rem;
+}
+
+.not-found-blurb {
+  max-width: 26rem;
+  margin: 0 auto;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #888;
+}
+
+/* ── Player chassis ──────────────────────────────────── */
+
+.not-found-stage {
+  width: 100%;
+  max-width: 36rem;
+  animation: fadeUp 0.6s ease-out 0.16s both;
+}
+
+.not-found-player {
+  position: relative;
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.65) 0%,
+      rgba(240, 240, 240, 0.8) 100%
+    );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 40px -8px rgba(0, 0, 0, 0.08),
+    0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+.not-found-player-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.85rem;
+  font-weight: 500;
+}
+
+/* ── Eject slit (physical disc opening on chassis) ───── */
+
+@keyframes slitOpen {
+  0%   { height: 1px; box-shadow: none; }
+  15%  { height: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 0 14px 2px rgba(74,144,226,0.3); }
+  55%  { height: 8px; box-shadow: inset 0 2px 5px rgba(0,0,0,0.5), 0 0 10px 1px rgba(74,144,226,0.2); }
+  100% { height: 1px; box-shadow: none; }
+}
+
+.not-found-eject-slit {
+  position: relative;
+  width: 55%;
+  margin: 0 auto 0.65rem;
+  height: 1px;
+  border-radius: 0.5px;
+  background: rgba(0, 0, 0, 0.1);
+  overflow: visible;
+}
+
+.not-found-eject-slit--active {
+  background: linear-gradient(180deg, #1a1a1a, #0e0e0e);
+  animation: slitOpen 0.6s ease-out both;
+}
+
+/* Disc emerging from the slit during eject */
+.not-found-eject-disc-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes discEmerge {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(0.6) rotateX(60deg); }
+  15%  { opacity: 1; transform: translate(-50%, -8px) scale(0.85) rotateX(35deg); }
+  40%  { opacity: 1; transform: translate(-50%, -50px) scale(1) rotateX(10deg); }
+  65%  { opacity: 1; transform: translate(-50%, -70px) scale(1.02) rotateX(0deg); }
+  100% { opacity: 0; transform: translate(-50%, -100px) scale(0.9) rotateX(-5deg); }
+}
+
+.not-found-eject-disc-wrap--active {
+  animation: discEmerge 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Slot / tray ─────────────────────────────────────── */
+
+.not-found-slot {
+  position: relative;
+  min-height: 140px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #1e1e1e 0%, #141414 100%);
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow: hidden;
+  transition: box-shadow 0.35s ease, outline 0.25s ease;
+  animation: slotPulse 4s ease-in-out infinite;
+}
+
+.not-found-slot--loaded {
+  animation: none;
+  min-height: 56px;
+}
+
+.not-found-slot--active {
+  outline: 2px dashed rgba(74, 144, 226, 0.6);
+  outline-offset: 3px;
+  animation: none;
+}
+
+.not-found-slot--drag {
+  box-shadow:
+    inset 0 4px 20px rgba(0, 0, 0, 0.6),
+    0 0 28px -4px rgba(74, 144, 226, 0.35);
+  animation: none;
+}
+
+.not-found-slot--drag .not-found-slot-groove {
+  height: 8px;
+  margin-top: -4px;
+  opacity: 1;
+  box-shadow:
+    0 0 12px 2px rgba(74, 144, 226, 0.25),
+    0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.not-found-slot--inserting {
+  animation: slotReceive 0.9s ease-out both;
+}
+
+.not-found-slot--inserting .not-found-slot-groove {
+  animation: grooveSwallow 0.9s ease-out both;
+}
+
+.not-found-slot:focus-visible {
+  outline: 2px solid #4a90e2;
+  outline-offset: 4px;
+}
+
+.not-found-slot-groove {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 2px;
+  background: #0a0a0a;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+  opacity: 0.7;
+  transition: height 0.25s ease, margin-top 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Flash overlay inside slot on lock-in — expanding ring */
+.not-found-slot-flash {
+  position: absolute;
+  inset: -8px;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.25) 0%, rgba(74, 144, 226, 0.08) 40%, transparent 65%);
+  animation: slotLock 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Second ring, delayed */
+.not-found-slot-flash::after {
+  content: '';
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(74, 144, 226, 0.3);
+  animation: slotLock 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+/* Inserting disc shadow on the slot floor */
+.not-found-slot-shadow {
+  position: absolute;
+  bottom: 18%;
+  left: 50%;
+  width: 50px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  filter: blur(6px);
+  animation: insertShadow 0.9s ease-out both;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Player chassis shake class */
+.not-found-player--shake {
+  animation: playerShake 0.3s ease-out both;
+}
+
+.not-found-slot-hint {
+  position: relative;
+  z-index: 1;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: center;
+  max-width: 18rem;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+
+/* ── Disc inside slot ────────────────────────────────── */
+
+.not-found-slot-disc {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.not-found-slot-disc--inserting {
+  perspective: 400px;
+  animation: slotInsert 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.not-found-slot-disc--settled {
+  animation: fadeUp 0.3s ease-out both;
+}
+
+.not-found-slot-disc--ejecting {
+  perspective: 400px;
+  animation: slotEject 0.5s cubic-bezier(0.55, 0, 1, 0.45) both;
+}
+
+/* ── LED panel (loaded state) ────────────────────────── */
+
+@keyframes ledOn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ledPulse {
+  0%, 100% { box-shadow: 0 0 4px 1px rgba(56, 212, 120, 0.45), inset 0 0 2px rgba(255,255,255,0.3); }
+  50%      { box-shadow: 0 0 8px 3px rgba(56, 212, 120, 0.6),  inset 0 0 2px rgba(255,255,255,0.3); }
+}
+
+@keyframes ledBarGrow {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+.not-found-led-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0 0.25rem;
+  animation: ledOn 0.4s ease-out 0.1s both;
+}
+
+.not-found-led {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #5eed8a, #38d478);
+  box-shadow:
+    0 0 4px 1px rgba(56, 212, 120, 0.45),
+    inset 0 0 2px rgba(255, 255, 255, 0.3);
+  animation: ledPulse 2s ease-in-out infinite;
+}
+
+.not-found-led-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.not-found-led-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.not-found-led-subtitle {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.not-found-led-bar-track {
+  margin-top: 0.5rem;
+  width: 100%;
+  height: 2px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.not-found-led-bar-fill {
+  height: 100%;
+  border-radius: 1px;
+  background: linear-gradient(90deg, rgba(56, 212, 120, 0.7), rgba(56, 212, 120, 0.35));
+  animation: ledBarGrow 60s linear both;
+}
+
+.not-found-eject {
+  flex-shrink: 0;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.35);
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.not-found-eject:hover {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Video embed ─────────────────────────────────────── */
+
+.not-found-video-wrap {
+  margin-top: 1.25rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0a0a0a;
+  aspect-ratio: 16 / 9;
+  box-shadow:
+    0 8px 30px -6px rgba(0, 0, 0, 0.18),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  animation: fadeUp 0.45s ease-out both;
+}
+
+.not-found-video {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ── Shelf ───────────────────────────────────────────── */
+
+.not-found-shelf-label {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.not-found-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1rem 0.75rem;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.018);
+}
+
+/* ── Disc (shelf item) ───────────────────────────────── */
+
+.not-found-disc-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.not-found-disc-item:nth-child(1) { animation: discIn 0.5s ease-out 0.22s both; }
+.not-found-disc-item:nth-child(2) { animation: discIn 0.5s ease-out 0.34s both; }
+.not-found-disc-item:nth-child(3) { animation: discIn 0.5s ease-out 0.46s both; }
+.not-found-disc-item:nth-child(4) { animation: discIn 0.5s ease-out 0.58s both; }
+.not-found-disc-item:nth-child(5) { animation: discIn 0.5s ease-out 0.70s both; }
+.not-found-disc-item:nth-child(6) { animation: discIn 0.5s ease-out 0.82s both; }
+
+/* ── The disc itself ─────────────────────────────────── */
+
+.not-found-disc {
+  --disc-size: 116px;
+  width: var(--disc-size);
+  height: var(--disc-size);
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: grab;
+  position: relative;
+  perspective: 600px;
+  background: #111;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.18),
+    0 8px 24px -6px rgba(0, 0, 0, 0.12);
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease;
+}
+
+
+/* Vinyl grooves — concentric rings */
+.not-found-disc-grooves {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      transparent 0px,
+      transparent 2.5px,
+      rgba(255, 255, 255, 0.04) 2.5px,
+      rgba(255, 255, 255, 0.04) 3px
+    );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Holographic sheen — animated on hover */
+.not-found-disc-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(255, 0, 128, 0.0)   0deg,
+      rgba(255, 0, 128, 0.12)  30deg,
+      rgba(120, 80, 255, 0.12) 70deg,
+      rgba(0, 200, 255, 0.10)  110deg,
+      rgba(0, 255, 160, 0.08)  150deg,
+      rgba(255, 220, 0, 0.10)  200deg,
+      rgba(255, 100, 0, 0.10)  250deg,
+      rgba(255, 0, 128, 0.08)  300deg,
+      rgba(255, 0, 128, 0.0)   360deg
+    );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.4s ease;
+}
+
+.not-found-disc:hover .not-found-disc-sheen {
+  opacity: 1;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Cover art — centered label */
+.not-found-disc-cover {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 62%;
+  height: 62%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 4;
+  box-shadow:
+    0 0 0 2px rgba(0, 0, 0, 0.35),
+    0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Outer rim highlight */
+.not-found-disc-rim {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Center spindle */
+.not-found-disc-hole {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 45% 40%,
+    #2a2a2a 0%,
+    #1a1a1a 60%,
+    #0e0e0e 100%
+  );
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.1),
+    0 0 0 2px rgba(255, 255, 255, 0.06),
+    0 0 0 3.5px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 6;
+}
+
+.not-found-disc-hole--shelf {
+  transform: translate(-50%, -50%);
+}
+
+.not-found-disc-hole--slot {
+  transform: translate(-50%, -50%);
+  animation: slowSpin 3s linear infinite;
+}
+
+/* ── Disc states ─────────────────────────────────────── */
+
+.not-found-disc:hover {
+  transform: translateY(-6px) rotate(-3deg);
+  box-shadow:
+    0 14px 36px -8px rgba(0, 0, 0, 0.22),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.not-found-disc:active {
+  cursor: grabbing;
+  transform: scale(0.96);
+  transition-duration: 0.1s;
+}
+
+.not-found-disc--selected {
+  transform: translateY(-4px);
+  box-shadow:
+    0 0 0 2.5px rgba(74, 144, 226, 0.6),
+    0 12px 32px -6px rgba(74, 144, 226, 0.18),
+    0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: discFloat 2.5s ease-in-out infinite;
+}
+
+.not-found-disc--selected .not-found-disc-sheen {
+  opacity: 1;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Spinning state for loaded disc in slot */
+.not-found-disc--spinning {
+  animation: discSpin 4s linear infinite;
+  cursor: default;
+}
+
+/* ── Disc caption ────────────────────────────────────── */
+
+.not-found-disc-caption {
+  width: var(--disc-size, 116px);
+  text-align: center;
+  line-height: 1.35;
+}
+
+.not-found-disc-caption-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.not-found-disc-caption-kind {
+  display: block;
+  font-size: 0.6rem;
+  color: #aaa;
+  letter-spacing: 0.04em;
+  margin-top: 0.1rem;
+}
+
+/* ── Footer ──────────────────────────────────────────── */
+
+.not-found-footer {
+  margin-top: 2rem;
+  animation: fadeUp 0.6s ease-out 0.5s both;
+}
+
+.not-found-home-link {
+  font-size: 0.82rem;
+  color: #999;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 1px;
+  transition: color 0.2s;
+}
+
+.not-found-home-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.4s cubic-bezier(0.45, 0, 0.55, 1) 0.1s;
+}
+
+.not-found-home-link:hover {
+  color: #333;
+}
+
+.not-found-home-link:hover::after {
+  width: 100%;
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+
+@media (min-width: 640px) {
+  .not-found-disc {
+    --disc-size: 128px;
+  }
+
+  .not-found-shelf {
+    gap: 2.25rem;
+  }
+}
