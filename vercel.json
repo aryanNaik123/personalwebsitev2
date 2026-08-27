@@ -8,6 +8,10 @@
     {
       "src": "/api/books",
       "dest": "/api/books.js"
+    },
+    {
+      "src": "/api/preview",
+      "dest": "/api/preview.js"
     }
   ]
 }
