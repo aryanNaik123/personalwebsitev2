@@ -14,7 +14,7 @@ import {
 } from "../utils/linkPreview";
 
 // The page is rendered at desktop width and scaled down, so it reads like the real site.
-const FRAME_WIDTH = 1100;
+const FRAME_WIDTH = 980;
 const FRAME_TIMEOUT_MS = 7000;
 
 export default function LinkPreviewStage({ url, host, title, preview }) {
