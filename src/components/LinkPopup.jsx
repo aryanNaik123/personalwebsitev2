@@ -1,5 +1,7 @@
 import React, { useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import LinkPreviewStage from "./LinkPreviewStage";
+import { useLinkPreview } from "../utils/linkPreview";
 import "./LinkPopup.css";
 
 function hostnameOf(url) {
@@ -68,14 +70,15 @@ export default function LinkPopup({
   const [dragging, setDragging] = useState(false);
   const host = hostnameOf(bookmark.link);
   const favicon = faviconOf(host);
-  const snippet = clipText(bookmark.snippet);
+  const preview = useLinkPreview(bookmark.link);
+  const snippet = clipText(bookmark.snippet || preview?.description);
   const quote = clipText(bookmark.highlightedText, 280);
 
   useLayoutEffect(() => {
     if (!ref.current || !anchorRect || movedRef.current) return;
     const next = placePopup(ref.current, anchorRect);
     setCoords({ ...next, ready: true });
-  }, [anchorRect, bookmark.id]);
+  }, [anchorRect, bookmark.id, snippet]);
 
   const clampPosition = (left, top) => {
     const el = ref.current;
@@ -178,6 +181,13 @@ export default function LinkPopup({
           {bookmark.title || host || "Untitled"}
         </span>
       </div>
+
+      <LinkPreviewStage
+        url={bookmark.link}
+        host={host}
+        title={bookmark.title}
+        preview={preview}
+      />
 
       <div className="link-popup-body">
         <div className="link-popup-kicker">
