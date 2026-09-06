@@ -2,14 +2,18 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import LinkPopup, { hostnameOf } from "./LinkPopup";
 import LinkTypeIcon from "./LinkTypeIcon";
+import { fetchPreview } from "../utils/linkPreview";
 
 const SHOW_DELAY_MS = 320;
 const HIDE_DELAY_MS = 200;
+// Long enough that skimming the list does not fetch, short enough to hide latency.
+const PREFETCH_DELAY_MS = 120;
 
 function BookmarkItem({ bookmark, hoverId, setHover, pinnedIds, togglePin }) {
   const anchorRef = useRef(null);
   const showTimer = useRef(null);
   const hideTimer = useRef(null);
+  const prefetchTimer = useRef(null);
   const [anchorRect, setAnchorRect] = useState(null);
   const isHovered = hoverId === bookmark.id;
   const isPinned = pinnedIds.includes(bookmark.id);
@@ -18,6 +22,7 @@ function BookmarkItem({ bookmark, hoverId, setHover, pinnedIds, togglePin }) {
   const clearTimers = () => {
     clearTimeout(showTimer.current);
     clearTimeout(hideTimer.current);
+    clearTimeout(prefetchTimer.current);
   };
 
   const captureRect = () => {
@@ -35,11 +40,16 @@ function BookmarkItem({ bookmark, hoverId, setHover, pinnedIds, togglePin }) {
   const scheduleOpen = () => {
     if (isPinned) return;
     clearTimeout(hideTimer.current);
+    prefetchTimer.current = setTimeout(
+      () => fetchPreview(bookmark.link),
+      PREFETCH_DELAY_MS
+    );
     showTimer.current = setTimeout(openPreview, SHOW_DELAY_MS);
   };
 
   const scheduleClose = () => {
     clearTimeout(showTimer.current);
+    clearTimeout(prefetchTimer.current);
     hideTimer.current = setTimeout(() => {
       setHover((current) => (current === bookmark.id ? null : current));
     }, HIDE_DELAY_MS);
