@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { openGameBoy } from "./GameBoy";
 import corgi from "../images/corgi.png";
 
 export default function AboutMe() {
@@ -12,8 +13,9 @@ export default function AboutMe() {
 
       <ul className="ml-5 mt-5 text-center">
         <li>
-          Lover of Birkenstocks, Coding, Corgis, Gameboys, Cognitive Science,
-          Longevity, Space, Philosophy, and Startups
+          Lover of Birkenstocks, Coding, Corgis,{" "}
+          <button type="button" className="gb-secret" onClick={openGameBoy}>Gameboys</button>
+          {", Cognitive Science, Longevity, Space, Philosophy, and Startups"}
         </li>
         <li>infovore, philomath, etc</li>
         <div className="flex justify-center items-center">

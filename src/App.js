@@ -10,6 +10,7 @@ import Writing from "./components/Writing";
 import Projects from "./components/Projects";
 import Library from "./components/Library";
 import Bookmarks from "./components/Bookmarks";
+import GameBoy from "./components/GameBoy";
 import AdminLogin from "./components/admin/AdminLogin";
 import AdminDashboard from "./components/admin/AdminDashboard";
 import PostEditor from "./components/admin/PostEditor";
@@ -35,8 +36,10 @@ function App() {
     <div className="App">
       <Analytics />
       <BrowserRouter>
+        <GameBoy />
         <Routes>
           <Route path="/" element={<><Nav /><DvdLogo /></>} />
+          <Route path="/gb" element={<><Nav /><DvdLogo /></>} />
           <Route path="/about" element={<AboutMe />} />
           <Route path="/writing/*" element={<Writing />} />
           <Route path="/projects" element={<Projects />} />

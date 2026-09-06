@@ -23,3 +23,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+
+# Game Boy ROMs — do not commit copyrighted dumps
+/public/roms/*
+!/public/roms/.gitkeep
