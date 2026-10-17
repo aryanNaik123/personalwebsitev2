@@ -1,0 +1,222 @@
+.go-root {
+  --go-ink: #111;
+  --go-muted: rgba(0, 0, 0, 0.45);
+}
+
+.go-stage {
+  width: 216px;
+  margin: -14px 0 -6px -22px; /* line the first grid line up with the text */
+  perspective: 700px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.go-stage:active {
+  cursor: grabbing;
+}
+
+/* The site paints every element #fafafa; keep the board see-through when tilted. */
+.go-stage,
+.go-board,
+.go-board * {
+  background-color: transparent;
+}
+
+.go-board {
+  display: block;
+  width: 100%;
+  height: auto;
+  backface-visibility: visible;
+}
+
+.go-grid line {
+  stroke: var(--go-ink);
+  stroke-width: 1.2;
+}
+
+.go-hoshi {
+  fill: var(--go-ink);
+}
+
+.go-stone {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: go-place 0.25s ease-out;
+}
+
+.go-stone.b {
+  fill: var(--go-ink);
+}
+
+.go-stone.w {
+  fill: #fafafa;
+  stroke: var(--go-ink);
+  stroke-width: 1.6;
+}
+
+.go-preview {
+  opacity: 0.25;
+  animation: none;
+  pointer-events: none;
+}
+
+.go-last {
+  fill: none;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.go-last.on-b {
+  stroke: #fafafa;
+}
+
+.go-last.on-w {
+  stroke: var(--go-ink);
+}
+
+.go-ghost {
+  fill: none;
+  stroke: var(--go-ink);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+  animation: go-fade 1.2s ease-out forwards;
+  pointer-events: none;
+}
+
+.go-territory.b {
+  fill: var(--go-ink);
+  opacity: 0.75;
+}
+
+.go-territory.w {
+  fill: #fafafa;
+  stroke: var(--go-ink);
+  stroke-width: 1.2;
+}
+
+.go-hit {
+  fill: transparent;
+  cursor: pointer;
+}
+
+.go-stage:active .go-hit {
+  cursor: grabbing;
+}
+
+.go-hint {
+  display: flex;
+  padding: 4px 0;
+  border: 0;
+  cursor: pointer;
+  opacity: 0.6; /* matches the social icons below */
+  transition: opacity 0.2s ease;
+}
+
+.go-hint:hover,
+.go-hint:focus-visible {
+  opacity: 1;
+}
+
+.go-hint-stones {
+  width: 33px;
+  height: 18px;
+  overflow: visible;
+}
+
+.go-hint-stones,
+.go-hint-stones * {
+  background-color: transparent;
+}
+
+.go-hint-b,
+.go-hint-w {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.go-hint-b {
+  fill: var(--go-ink);
+}
+
+.go-hint-w {
+  fill: #fafafa;
+  stroke: var(--go-ink);
+  stroke-width: 1.1;
+}
+
+/* On hover the stones trade places, like a move being answered. */
+.go-hint:hover .go-hint-b {
+  transform: translateX(12px);
+}
+
+.go-hint:hover .go-hint-w {
+  transform: translateX(-12px);
+}
+
+.go-game {
+  animation: go-unfold 0.35s ease-out;
+}
+
+@keyframes go-unfold {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.go-status {
+  font-variant-numeric: tabular-nums;
+}
+
+.go-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.go-controls button {
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+.go-controls button:disabled {
+  color: var(--go-muted);
+  cursor: default;
+  font-style: normal;
+}
+
+@keyframes go-place {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes go-fade {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .go-stone,
+  .go-game {
+    animation: none;
+  }
+  .go-hint-b,
+  .go-hint-w {
+    transition: none;
+  }
+}

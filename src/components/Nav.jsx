@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Clock from "./Clock";
 import SocialIcons from "./SocialIcons";
+import GoBoard from "./GoBoard";
 import "./Nav.css";
 
 export default function Nav() {
@@ -89,6 +90,7 @@ export default function Nav() {
           </li>
         </ul>
       </div>
+      <GoBoard />
       <div className="mt-6 ml-5 text-left">
         <SocialIcons />
       </div>
