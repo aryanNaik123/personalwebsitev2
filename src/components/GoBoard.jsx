@@ -15,6 +15,13 @@ import {
   score,
   coordName,
 } from "../utils/go";
+import {
+  loadMuted,
+  playGameOver,
+  playMove,
+  saveMuted,
+  unlockSound,
+} from "../utils/goSound";
 import "./GoBoard.css";
 
 const SIZE = 9;
@@ -24,6 +31,9 @@ const HOSHI = [20, 24, 56, 60, 40]; // 3-3 points and tengen on 9x9
 const RESTART_DELAY = 6000;
 const BOT_DELAY = 450;
 const MOVE_DELAY = 900;
+const WATCH_VOLUME = 0.5; // bot-vs-bot plays quieter than your own game
+const QUIET_AFTER = 20; // unattended moves at full watch volume…
+const FADE_OVER = 20; // …then fade to silence over this many more
 
 const DRAG_THRESHOLD = 4; // px before a press becomes a drag instead of a click
 const MAX_TILT = 70;
@@ -155,7 +165,10 @@ export default function GoBoard() {
         <button
           type="button"
           className="go-hint"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            unlockSound(); // the opening click is what lets the browser play audio
+            setOpen(true);
+          }}
           aria-expanded={false}
           aria-label="Show a game of Go"
           title="Go?"
@@ -179,6 +192,8 @@ function GoGame({ onHide }) {
   const [paused, setPaused] = useState(false);
   const [human, setHuman] = useState(false); // visitor plays black
   const [hover, setHover] = useState(-1);
+  const [muted, setMuted] = useState(loadMuted);
+  const unattended = useRef(0); // moves since the visitor last touched the board
   const prevBoard = useRef(game.board);
   const { tilt, tilted, reset: resetTilt, handlers: tiltHandlers } = useTilt();
 
@@ -209,6 +224,29 @@ function GoGame({ onHide }) {
 
   const area = useMemo(() => score(game), [game]);
   const last = game.moves[game.moves.length - 1];
+
+  // One sound per move, and a chord when the game ends. Self-play is quieter and
+  // fades out if nobody is interacting, so it never drones on in the background.
+  useEffect(() => {
+    if (muted || !last) return;
+    let level = 1;
+    if (!human) {
+      const n = unattended.current++;
+      level =
+        WATCH_VOLUME *
+        Math.max(0, Math.min(1, 1 - (n - QUIET_AFTER) / FADE_OVER));
+    }
+    playMove({ size: SIZE, ...last }, level);
+    if (game.over) playGameOver(area.margin > 0, level);
+  }, [game, last, area, muted, human]);
+
+  const toggleMuted = () => {
+    unlockSound();
+    setMuted((m) => {
+      saveMuted(!m);
+      return !m;
+    });
+  };
 
   // Stones removed by the last move, for a brief fade-out ring.
   const ghosts = useMemo(() => {
@@ -251,7 +289,12 @@ function GoGame({ onHide }) {
   })();
 
   return (
-    <div className="go-game">
+    <div
+      className="go-game"
+      onPointerDown={() => {
+        unattended.current = 0;
+      }}
+    >
       <div
         className="go-stage"
         {...tiltHandlers}
@@ -383,6 +426,9 @@ function GoGame({ onHide }) {
             flatten
           </button>
         )}
+        <button type="button" className="hover:italic" onClick={toggleMuted}>
+          {muted ? "sound on" : "mute"}
+        </button>
         <button type="button" className="hover:italic" onClick={onHide}>
           hide
         </button>
