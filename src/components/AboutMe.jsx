@@ -40,8 +40,16 @@ export default function AboutMe() {
           >
             books
           </a>
+          , and I like to{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Walking_(Thoreau)"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            walk
+          </a>
           .
-
         </div>
         <li>
           Investor @{" "}
