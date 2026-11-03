@@ -2,13 +2,22 @@ import React, { useState, useRef, useEffect } from 'react';
 import './DvdLogo.css';
 import { albumCovers } from '../albumCovers';
 
+// Phones get a smaller disc and a tight drag area so it doesn't cover the page
+const getSizes = () => {
+  const compact = window.innerWidth < 640;
+  const disc = compact ? 96 : 150;
+  const pad = compact ? 8 : 75;
+  return { disc, pad, box: disc + pad * 2 };
+};
+
 const DvdLogo = () => {
   const [showSelector, setShowSelector] = useState(false);
   const [selectedAlbum, setSelectedAlbum] = useState(0);
   const [albumImage, setAlbumImage] = useState(albumCovers[0].url);
+  const [sizes, setSizes] = useState(getSizes);
   const [position, setPosition] = useState(() => ({
-    x: window.innerWidth - 300,  // container width
-    y: window.innerHeight - 300  // container height
+    x: window.innerWidth - getSizes().box,
+    y: window.innerHeight - getSizes().box
   }));
   const [velocity, setVelocity] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -103,14 +112,24 @@ const DvdLogo = () => {
   // Refs for tracking drag state
   const prevPosRef = useRef({ x: 0, y: 0 });
   const hitWallRef = useRef(false);
-  
+  // Last pointer sample, so flicks work on touch screens (touch has no movementX)
+  const lastPointerRef = useRef({ x: 0, y: 0, dx: 0, dy: 0, t: 0 });
+  // How far the pointer travelled, so ending a drag doesn't count as a tap
+  const dragDistanceRef = useRef(0);
+
   // Handle dragging
   useEffect(() => {
     // Update ref with current position
     prevPosRef.current = { x: position.x, y: position.y };
-    
-    const handleMouseMove = (e) => {
+
+    const handlePointerMove = (e) => {
       if (isDragging && dvdRef.current) {
+        const last = lastPointerRef.current;
+        const dx = e.clientX - last.x;
+        const dy = e.clientY - last.y;
+        lastPointerRef.current = { x: e.clientX, y: e.clientY, dx, dy, t: e.timeStamp };
+        dragDistanceRef.current += Math.hypot(dx, dy);
+
         const newX = e.clientX - dragOffset.x;
         const newY = e.clientY - dragOffset.y;
         
@@ -128,8 +147,8 @@ const DvdLogo = () => {
         let newVelocity = { x: 0, y: 0 };
         
         // Calculate drag speed for potential bounce (use more recent movement data)
-        const dragSpeedX = Math.abs(e.movementX) > 0 ? e.movementX : (newX - position.x);
-        const dragSpeedY = Math.abs(e.movementY) > 0 ? e.movementY : (newY - position.y);
+        const dragSpeedX = dx;
+        const dragSpeedY = dy;
         
         // Stronger bounce effect
         const bounceMultiplier = 3;
@@ -193,21 +212,23 @@ const DvdLogo = () => {
       }
     };
 
-    const handleMouseUp = (e) => {
+    const handlePointerUp = (e) => {
       if (isDragging) {
         // Check if we're at an edge
         const dvdRect = dvdRef.current?.getBoundingClientRect();
         if (dvdRect) {
           const maxX = window.innerWidth - dvdRect.width;
           const maxY = window.innerHeight - dvdRect.height;
-          
+
           let hasCollision = false;
           let edge = '';
           let newVelocity = { x: 0, y: 0 };
-          
-          // Calculate drag speed for potential bounce
-          const dragSpeedX = Math.abs(e.movementX) > 0 ? e.movementX : 0;
-          const dragSpeedY = Math.abs(e.movementY) > 0 ? e.movementY : 0;
+
+          // Calculate drag speed for potential bounce, ignoring a pointer that had stopped
+          const last = lastPointerRef.current;
+          const isFlick = e.timeStamp - last.t < 80;
+          const dragSpeedX = isFlick ? last.dx : 0;
+          const dragSpeedY = isFlick ? last.dy : 0;
           
           // Stronger bounce effect
           const bounceMultiplier = 3;
@@ -254,12 +275,12 @@ const DvdLogo = () => {
             const positionChangeX = position.x - prevPosRef.current.x;
             const positionChangeY = position.y - prevPosRef.current.y;
             
-            const mouseVelocityX = Math.abs(e.movementX) > Math.abs(positionChangeX) 
-              ? e.movementX * 0.5 
+            const mouseVelocityX = Math.abs(dragSpeedX) > Math.abs(positionChangeX)
+              ? dragSpeedX * 0.5
               : positionChangeX * 0.5;
-              
-            const mouseVelocityY = Math.abs(e.movementY) > Math.abs(positionChangeY)
-              ? e.movementY * 0.5
+
+            const mouseVelocityY = Math.abs(dragSpeedY) > Math.abs(positionChangeY)
+              ? dragSpeedY * 0.5
               : positionChangeY * 0.5;
             
             // Only update velocity if there was significant movement
@@ -279,28 +300,26 @@ const DvdLogo = () => {
     };
 
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
+      window.addEventListener('pointermove', handlePointerMove);
+      window.addEventListener('pointerup', handlePointerUp);
+      window.addEventListener('pointercancel', handlePointerUp);
     }
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('pointercancel', handlePointerUp);
     };
   }, [isDragging, dragOffset, position]);
 
   // Handle window resize with useCallback to avoid dependency issues
   const handleResize = React.useCallback(() => {
-    if (dvdRef.current) {
-      const dvdRect = dvdRef.current.getBoundingClientRect();
-      const maxX = window.innerWidth - dvdRect.width;
-      const maxY = window.innerHeight - dvdRect.height;
-      
-      setPosition(prev => ({
-        x: Math.min(prev.x, maxX),
-        y: Math.min(prev.y, maxY)
-      }));
-    }
+    const nextSizes = getSizes();
+    setSizes(nextSizes);
+    setPosition(prev => ({
+      x: Math.max(0, Math.min(prev.x, window.innerWidth - nextSizes.box)),
+      y: Math.max(0, Math.min(prev.y, window.innerHeight - nextSizes.box))
+    }));
   }, []);
   
   useEffect(() => {
@@ -308,13 +327,17 @@ const DvdLogo = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, [handleResize]);
 
-  const handleMouseDown = (e) => {
+  const handlePointerDown = (e) => {
+    // Let the album picker's buttons take taps without nudging the disc
+    if (e.target.closest('button')) return;
     if (dvdRef.current) {
       const dvdRect = dvdRef.current.getBoundingClientRect();
       setDragOffset({
         x: e.clientX - dvdRect.left,
         y: e.clientY - dvdRect.top
       });
+      lastPointerRef.current = { x: e.clientX, y: e.clientY, dx: 0, dy: 0, t: e.timeStamp };
+      dragDistanceRef.current = 0;
       setIsDragging(true);
       // Stop any ongoing animation
       if (animationRef.current) {
@@ -323,25 +346,34 @@ const DvdLogo = () => {
     }
   };
 
-  const handleClick = (e) => {
-    if (!isDragging) {
+  const handleClick = () => {
+    // A drag also ends in a click, so only open the picker on a tap
+    if (dragDistanceRef.current < 6) {
       setShowSelector(!showSelector);
     }
   };
 
+  // Center the album picker on the disc, but keep it on screen
+  const selectorWidth = Math.min(280, window.innerWidth - 32);
+  const selectorLeft = Math.min(
+    Math.max(16, position.x + sizes.box / 2 - selectorWidth / 2),
+    window.innerWidth - 16 - selectorWidth
+  ) - position.x;
+
   return (
-    <div 
+    <div
       ref={dvdRef}
-      onMouseDown={handleMouseDown}
+      onPointerDown={handlePointerDown}
       style={{
         position: 'fixed',
         left: position.x,
         top: position.y,
-        width: '300px',
-        height: '300px',
+        width: sizes.box,
+        height: sizes.box,
         overflow: 'visible',
         zIndex: isDragging ? 1001 : 1000,
         cursor: 'move',
+        touchAction: 'none',  // Drag the disc instead of scrolling the page
         background: 'rgba(0, 0, 0, 0.001)',  // Extremely subtle background to make entire area draggable
         borderRadius: '8px',
         userSelect: 'none',
@@ -363,14 +395,12 @@ const DvdLogo = () => {
         <div 
           style={{
             position: 'absolute',
-            ...(position.y < window.innerHeight / 2 
-              ? {
-                  top: '320px',
-                  right: '20px',
-                } : {
-                  bottom: '320px',
-                  right: '20px',
-                }
+            left: selectorLeft,
+            width: selectorWidth,
+            boxSizing: 'border-box',
+            ...(position.y < window.innerHeight / 2
+              ? { top: sizes.box + 20 }
+              : { bottom: sizes.box + 20 }
             ),
             zIndex: 1000,
             display: 'flex',
@@ -435,10 +465,10 @@ const DvdLogo = () => {
         onClick={handleClick}
         style={{
           position: 'absolute',
-          left: '75px',  // Fixed position in the middle of container (300px - 150px)/2
-          top: '75px',   // Fixed position in the middle of container (300px - 150px)/2
-          width: '150px',
-          height: '150px',
+          left: sizes.pad,  // Centered in the drag area
+          top: sizes.pad,
+          width: sizes.disc,
+          height: sizes.disc,
           background: 'radial-gradient(circle at 30% 30%, #ffffff 0%, #4A90E2 40%, #2171C7 80%, #1a5da0 100%)',
           borderRadius: '50%',
           boxShadow: collisionEffect 
