@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import './DvdLogo.css';
 import { albumCovers } from '../albumCovers';
 
@@ -7,7 +7,7 @@ const getSizes = () => {
   const compact = window.innerWidth < 640;
   const disc = compact ? 96 : 150;
   const pad = compact ? 8 : 75;
-  return { disc, pad, box: disc + pad * 2 };
+  return { disc, pad, box: disc + pad * 2, captionFont: compact ? 12 : 13 };
 };
 
 const DvdLogo = () => {
@@ -26,6 +26,18 @@ const DvdLogo = () => {
   const [collisionEdge, setCollisionEdge] = useState('');
   const dvdRef = useRef(null);
   const animationRef = useRef(null);
+  const captionRef = useRef(null);
+  const [captionSize, setCaptionSize] = useState({ width: 0, height: 0 });
+
+  // Measure the now-playing caption so it can be kept on screen
+  useLayoutEffect(() => {
+    if (captionRef.current) {
+      setCaptionSize({
+        width: captionRef.current.offsetWidth,
+        height: captionRef.current.offsetHeight
+      });
+    }
+  }, [selectedAlbum, sizes]);
 
   // Handle physics animation when there's velocity (after dragging)
   useEffect(() => {
@@ -360,9 +372,19 @@ const DvdLogo = () => {
     window.innerWidth - 16 - selectorWidth
   ) - position.x;
 
+  // Now-playing caption under the disc, or above it when there's no room below
+  const captionGap = 8;
+  const captionFitsBelow =
+    position.y + sizes.pad + sizes.disc + captionGap + captionSize.height <= window.innerHeight;
+  const captionLeft = Math.min(
+    Math.max(4, position.x + sizes.box / 2 - captionSize.width / 2),
+    window.innerWidth - 4 - captionSize.width
+  ) - position.x;
+
   return (
     <div
       ref={dvdRef}
+      className="dvd-container"
       onPointerDown={handlePointerDown}
       style={{
         position: 'fixed',
@@ -460,6 +482,28 @@ const DvdLogo = () => {
           </div>
         </div>
       )}
+      {/* Before the disc so the disc's shadow draws over it */}
+      <div
+        ref={captionRef}
+        className="now-playing"
+        style={{
+          left: captionLeft,
+          ...(captionFitsBelow
+            ? { top: sizes.pad + sizes.disc + captionGap }
+            : { bottom: sizes.pad + sizes.disc + captionGap }
+          ),
+          fontSize: sizes.captionFont,
+          visibility: showSelector ? 'hidden' : 'visible'  // The picker shows the name instead
+        }}
+      >
+        <span className="now-playing-bars" aria-hidden="true">
+          <span /><span /><span />
+        </span>
+        <span>
+          <span className="now-playing-name">{albumCovers[selectedAlbum].name}</span>
+          {' · '}{albumCovers[selectedAlbum].artist}
+        </span>
+      </div>
       <div
         className={`dvd-logo ${collisionEffect ? 'collision' : ''}`}
         onClick={handleClick}

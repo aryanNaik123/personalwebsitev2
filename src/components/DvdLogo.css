@@ -89,6 +89,89 @@
     0 0 12px rgba(255,255,255,0.4);
 }
 
+/* Now-playing caption; follows the disc but doesn't spin */
+.now-playing {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  line-height: 1.4;
+  color: #6b7280;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 999px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+  padding: 2px 9px;
+  pointer-events: none;  /* Taps pass through to the page on phones */
+}
+
+.now-playing span {
+  background-color: inherit;  /* Override the global page background */
+}
+
+.now-playing-name {
+  color: #111111;
+  font-weight: 500;
+}
+
+/* Small equalizer bars in place of a music note */
+.now-playing-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5px;
+  height: 0.75em;
+}
+
+.now-playing .now-playing-bars span {
+  width: 2px;
+  height: 100%;
+  border-radius: 1px;
+  background-color: #111111;
+  transform-origin: bottom;
+  animation: equalizer 0.9s ease-in-out infinite;
+}
+
+.now-playing .now-playing-bars span:nth-child(2) {
+  animation-duration: 1.1s;
+  animation-delay: -0.4s;
+}
+
+.now-playing .now-playing-bars span:nth-child(3) {
+  animation-duration: 0.8s;
+  animation-delay: -0.2s;
+}
+
+@keyframes equalizer {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-playing .now-playing-bars span {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}
+
+/* With a mouse, only show the caption while hovering the disc; touch screens always show it */
+@media (hover: hover) and (pointer: fine) {
+  .now-playing {
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .dvd-container:has(.dvd-logo:hover) .now-playing {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Top reflection */
 .dvd-logo .reflection {
   content: '';
